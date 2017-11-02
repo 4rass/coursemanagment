@@ -1,6 +1,7 @@
 package service;
 
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -9,24 +10,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
 
-import entity.Students;
 
+import entity.Rooms;
 import manager.ManagerHelper;
 
 
-@Path("/student")
-public class StudentsService {
-	
+@Path("/Rooms")
+public class RoomsService {
 	public static EntityManagerFactory entityManagerFactory=
 			Persistence.createEntityManagerFactory("coursemanagment");
 	
 	public static EntityManager entityManager=
 			entityManagerFactory.createEntityManager();
-	
+
 	@GET
 	@Path("get")
-	public Students getStudents(@QueryParam("id") int id){
-		return ManagerHelper.getStudentsManager().get(id); 
+	public Rooms getRoomsManager(@QueryParam("id") int id) {
+		System.out.println("delete service EmployeeProject");
+		return ManagerHelper.getRoomsManager().get(id);
 	}
 	
 	

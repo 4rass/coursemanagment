@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,27 +9,26 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
+import entity.Days;
 
-import entity.Students;
 
 import manager.ManagerHelper;
 
 
-@Path("/student")
-public class StudentsService {
-	
+@Path("/Days")
+public class DaysService {
+		
 	public static EntityManagerFactory entityManagerFactory=
 			Persistence.createEntityManagerFactory("coursemanagment");
 	
 	public static EntityManager entityManager=
 			entityManagerFactory.createEntityManager();
-	
-	@GET
-	@Path("get")
-	public Students getStudents(@QueryParam("id") int id){
-		return ManagerHelper.getStudentsManager().get(id); 
-	}
-	
+		
+		@GET
+		@Path("get")
+		public Days DaysManager(@QueryParam("id") int id){
+			return ManagerHelper.getDaysManager().get(id); 
+		}
 	
 
 }
