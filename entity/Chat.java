@@ -19,7 +19,7 @@ public class Chat {
 	private Courses course;
 	
 	private String username;
-	
+	//exampleeeeeee
 	private String date;
 	
 	private String massage;
