@@ -12,4 +12,44 @@ public class ManagerHelper {
 		return new StudentsManager(entityManagerFactory.createEntityManager());
 
 	}
+	public static RoomsManager getRoomsManager() {
+		
+		return new RoomsManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static UsersManager getUsersManager() {
+		
+		return new UsersManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static LecturersManager getLecturersManager() {
+		
+		return new LecturersManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static CourseSubjectManager getCourseSubjectManager() {
+		
+		return new CourseSubjectManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static CoursesManager getCoursesManager() {
+		
+		return new CoursesManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static CourseMembersManager getCourseMembersManager() {
+		
+		return new CourseMembersManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static CourseDetailsManager getCourseDetailsManager() {
+		
+		return new CourseDetailsManager(entityManagerFactory.createEntityManager());
+		
+	}
+	public static DaysManager getDaysManager() {
+		
+		return new DaysManager(entityManagerFactory.createEntityManager());
+		
+	}
 }
