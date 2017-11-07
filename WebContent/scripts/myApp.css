@@ -1,0 +1,81 @@
+body {
+    box-sizing: border-box;
+}
+.body1{
+	display: none;
+}
+
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+    font-family: Gill Sans Extrabold, sans-serif;
+    background-color: #e5e5e5;
+}
+
+header, footer {
+    padding: 10px;
+    color: white;
+    background-color: cadetblue;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    margin: 0;
+    width: 180px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #ffffff;
+    margin: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+    color: #000000
+}
+nav ul li {
+    padding: 8px 10px;
+}
+nav ul li:hover {
+    background-color: #448AFF
+}
+nav ul li:hover a {
+    color: #ffffff
+}
+section {
+    padding: 50px 15px 10px 15px;
+    border-bottom: 1px solid gray;
+}
+
+article {
+    border-left: 1px solid gray;
+    padding: 20px;
+    overflow: hidden;
+    float: left;
+    width: calc(100% - 180px);
+    background-color: #ffffff;
+}
+.box {
+     background-image:  url('images/images.png');
+     width: 33.333%;
+     height: 300px;
+     float: left;
+     padding: 10px;
+}
+.search {
+    width: 100%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    border: 2px solid grey;
+}
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+}
+.right-addon .glyphicon { right: 10px;}
+.right-addon input { padding-left: 0px; }

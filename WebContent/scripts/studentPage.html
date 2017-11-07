@@ -1,0 +1,24 @@
+
+<div class="container">
+
+<article>
+  <div class="box" 
+		 data-ng-repeat="course in associated">
+		
+			<header >
+			  <h3>{{course.courseName}}</h3>
+			  <h4>{{course.lecturer.firstName}}  {{course.lecturer.lastName}}</h4>
+			</header>
+			<div >
+			  <hr>
+			  <p>{{course.description}}</p>
+			</div>
+			<button >+ Register</button>
+			
+	</div>
+		 
+</article>
+
+
+
+</div>

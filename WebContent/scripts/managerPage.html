@@ -1,0 +1,27 @@
+
+
+
+<div class="container">
+<a href=""><button class="btn btn-info">add Course</button></a>
+
+<article>
+  <div  style="background-image:  url('images/images.png'); display:inline-block; 
+		 margin-right:20px;  width: 300px;" class="w3-card-4" 
+		 data-ng-repeat="course in allCourses" data-ng-click="">
+		
+			<header>
+			<button type="button"  class="glyphicon glyphicon-pencil" data-ng-click="edit($index)" style="float: right; background-color:cadetblue" ></button>
+			<button type="button" class="glyphicon glyphicon-trash " data-ng-click="remove($index)" style="float: right; background-color:cadetblue"></button>
+			  <h3>{{course.courseName}}</h3>
+			  <h4>{{course.lecturer.firstName+" "+course.lecturer.lastName}}</h4>
+			</header>
+			<div >
+			  <hr>
+			  <p>{{course.description}}</p>
+			
+			</div>
+			
+		</div>
+		 
+</article>
+</div>
