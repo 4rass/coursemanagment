@@ -26,7 +26,7 @@
 		<echo message="Source:    ${src}" />
 		<echo message="Bin:       ${bin}" />
 		<java classname="org.apache.openjpa.enhance.PCEnhancer" logError="true"
-			failonerror="faslse" fork="true">
+			failonerror="false" fork="true">
 			<classpath refid="enhance.classpath" />
 			<arg value="-properties" />
 			<arg value="META-INF/persistence.xml" />
