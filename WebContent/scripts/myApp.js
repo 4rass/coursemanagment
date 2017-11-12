@@ -4,7 +4,7 @@
 			$routeProvider.when("/", {
 				templateUrl : "loginPage.html",
 				controller : "userCtrl"
-			}).when("/student", {
+			}).when("/chat", {
 				templateUrl : "chat.html",
 				controller : "chatCtrl"
 			}).when("/lectur", {
@@ -24,6 +24,7 @@
 		});
 		
 		var userId;
+		var userType;
 		app.controller('userCtrl', function($scope, $http,$location) {
 			
 			$scope.submit = function() {
@@ -35,6 +36,7 @@
 						
 					}else if ($scope.userim.type == "student") {
 					userId = $scope.userim.id;
+					userType= $scope.userim.type;
 						alert("student");
 						$(".body1").show();
 						$location.path('/studentPage');
@@ -56,7 +58,6 @@
 		});
 		
 		app.controller('chatCtrl',function($scope,$http){
-			
 				$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages")
 				.then(function(response) {
 					$scope.allMassages = response.data;
@@ -100,6 +101,12 @@
 		});
 		
 		app.controller('studentCtrl', function($scope, $http) {
+			
+			if(userType=="student"){
+				$("#newSubject").hide();
+				$("#newSubject1").hide();
+			}
+			
 			$http.get("/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
 			.then(function(response) {
 				$scope.allsubject = response.data;
@@ -131,9 +138,24 @@
 						$scope.allsubject = response.data;
 						console.log($scope.allsubject);
 					});
+				 
+
+				  $scope.associate = function(id){
+					
+				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
+				.then(function(response) {
+					$scope.associated = response.data;
+					$location.path("/managerPage");
+					console.log($scope.associated);
+					if($scope.associated == null){
+						alert("Thers are NO courses in this subject");
+
+						}
+						
+				 })
+				}
 					
 			});
-			
 			
 			
 			/*  remove the course */
@@ -155,20 +177,7 @@
 					}
 			 }
 			 
-				  $scope.associate = function(id){
-					
-				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
-				.then(function(response) {
-					$scope.associated = response.data;
-					$location.path("/managerPage");
-					console.log($scope.associated);
-					if($scope.associated == null){
-						alert("Thers are NO courses in this subject");
-
-						}
-						
-				 })
-				}
+				 
 				  
 				  $scope.addNewSubject = function(newSubject){
 					  
@@ -189,7 +198,7 @@
 								});
 								
 							}else{
-								alert("Try again .");
+								alert("Try again");
 							}
 							
 						});

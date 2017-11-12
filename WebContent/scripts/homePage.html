@@ -23,11 +23,11 @@
 	<body class="body" data-ng-app="myApp" data-ng-controller="studentCtrl">
 		<header class="body1">
 	
-			<span style="font-size: 25px" class="glyphicon glyphicon-bell "></span>
-			<span  style="font-size: 25px" class="glyphicon glyphicon-home"></span>
-			<span  style="font-size: 25px" class="fa fa-commenting" data-ng-click=""></span>
-			<span  style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>
-			<span  style="font-size: 25px" class="fa fa-cloud-download" data-ng-click=""></span>
+			<span style="font-size: 25px" class="glyphicon glyphicon-bell" data-ng-click=""></span>&nbsp;
+			<span  style="font-size: 25px" class="glyphicon glyphicon-home" data-ng-click=""></span>&nbsp;
+			<span  style="font-size: 25px" class="fa fa-commenting" data-ng-click=""></span>&nbsp;
+			<span  style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>&nbsp;
+			<span  style="font-size: 25px" class="fa fa-cloud-download" data-ng-click=""></span>&nbsp;
 		</header>	  
 		
 		<nav>
@@ -39,21 +39,21 @@
 		    </section>
 		  <h5 class="body1">My Courses</h5>
 		  
-		  <button  class="body1"  data-ng-click="addNewSubject(newSubject)">+Add New Subject</button>
-		  <input  class="body1" data-ng-model="newSubject" type="text" placeholder="Insert New Subject">
+		  <button  class="body1"  data-ng-click="addNewSubject(newSubject)" id ="newSubject">+Add New Subject</button>
+		  <input  class="body1" data-ng-model="newSubject" type="text" placeholder="Insert New Subject" id ="newSubject1">
 		  
 		  <div>
 				<ul id="ulNav" class="body1" data-ng-repeat= "x in allsubject" >
 				<li data-ng-click="associate(x.id)" value="{{x.id}}">{{x.subject}}</li>			
 				</ul>
 		</div>
-		<div>
+		<!-- <div>
 			<ul class="body1">
 				<li>
-						<a href="#!student" > Massage Board </a>
+						<a href="#!chat" > Massage Board </a>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		
 		</nav>			
 		<div id="divView" data-ng-view></div>
