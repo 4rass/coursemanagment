@@ -1,0 +1,25 @@
+
+<div class="container">
+<h1>Massage Board</h1>
+	<article>
+ 		<hr>
+ 	<form >
+ 		<div class="well form-group" data-ng-repeat="massage in allMassages">
+	<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" 
+	style="float:left; ">
+			<div class="header">
+                  <strong class="primary-font">{{massage.student.firstName}}</strong>
+                   <small class="pull-right text-muted">
+                      <span class="glyphicon glyphicon-time">
+                   </span>{{massage.date}} ago</small>
+             </div>
+             <div>
+             	{{massage.massage}}
+             </div>
+		</div>
+	</form>
+		<textarea class="form-control"  data-ng-model="massageText"></textarea> 
+		<button  class="btn btn-primary" data-ng-click="sendMassage()">
+		<i class="glyphicon glyphicon-send"></i><a>&nbsp;</a>Send </button>	
+	</article>
+</div>

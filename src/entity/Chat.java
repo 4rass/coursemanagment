@@ -15,15 +15,33 @@ public class Chat {
 	private int id;
 	
 	@ManyToOne
+	@JoinColumn(name="student")
+	private Students student;
+	
+	@ManyToOne
 	@JoinColumn(name="course")
 	private Courses course;
-	
-	private String username;
 	
 	private String date;
 	
 	private String massage;
-
+	
+	public Chat( Students student,Courses course,String date,String massage){
+		this.student=student;
+		this.course=course;
+		this.date=date;
+		this.massage=massage;
+	}
+	
+	public Chat(int id,Students student,Courses course,String date,String massage){
+		this.id=id;
+		this.student=student;
+		this.course=course;
+		this.date=date;
+		this.massage=massage;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -32,20 +50,21 @@ public class Chat {
 		this.id = id;
 	}
 
+	
+	public Students getStudent() {
+		return student;
+	}
+
+	public void setStudent(Students student) {
+		this.student = student;
+	}
+
 	public Courses getCourse() {
 		return course;
 	}
 
 	public void setCourse(Courses course) {
 		this.course = course;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getDate() {
@@ -63,4 +82,5 @@ public class Chat {
 	public void setMassage(String massage) {
 		this.massage = massage;
 	}
+
 }

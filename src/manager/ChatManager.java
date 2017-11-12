@@ -1,40 +1,73 @@
 package manager;
 
+import java.util.Date;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 
+import org.apache.openjpa.persistence.EntityManagerImpl;
 
-
+import entity.Chat;
+import entity.Courses;
+import entity.Students;
+import entity.Users;
 
 public class ChatManager {
 
-}
 
-	/*private final EntityManager entityManager;
+
+	private final EntityManager entityManager;
 
 	public ChatManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 		((EntityManagerImpl) this.entityManager).getBroker().setAllowReferenceToSiblingContext(true);
 	}
 
-	public void update( Chat customer) {
+	public void update( Chat chat) {
 		entityManager.getTransaction().begin();
-		entityManager.merge(customer);
+		entityManager.merge(chat);
 		entityManager.getTransaction().commit();
 	}
 
-	public void create(Customer customer) {
+	public Chat createNewMassage(int student1,int course1,String date,String massage) {
+		
+		Students student = ManagerHelper.getStudentsManager().get(student1);
+		Courses course = ManagerHelper.getCoursesManager().get(course1);
+		
+		
+		Chat chat = new Chat(student, course, date, massage);
+		try{
 		entityManager.getTransaction().begin();
-		entityManager.persist(customer);
+		entityManager.persist(chat);
+		entityManager.getTransaction().commit();
+		return chat;
+		} catch (Exception e) {
+			return null;
+		}		
+	
+	}
+
+	public List<Chat> getAllMassages(){
+		String sql = "SELECT * FROM coursemanagment.chat";
+		return (List)entityManager.createNativeQuery(sql, Chat.class).getResultList();
+	}
+	
+	
+	public List<Chat> getCourseIdAssociateToUserId(int userId){
+		String sql = " SELECT c.id,c.course FROM coursemanagment.chat c "+ 
+					" inner join coursemanagment.students s on s.id = c.student "+
+					" inner join coursemanagment.users u on u.id = s.user "+
+					" where u.id ="+userId ;
+		return entityManager.createNativeQuery(sql, Chat.class).getResultList();
+	}
+	
+	public void delete(Chat chat) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(chat);
 		entityManager.getTransaction().commit();
 	}
 
-	public void delete(Customer customer) {
-		entityManager.getTransaction().begin();
-		entityManager.remove(customer);
-		entityManager.getTransaction().commit();
+	public Chat get(int id) {
+		return entityManager.find(Chat.class, id);
 	}
-
-	public Customer get(int id) {
-		return entityManager.find(Customer.class, id);
-	}
-*/
+}
