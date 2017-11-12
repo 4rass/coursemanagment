@@ -1,6 +1,5 @@
 package manager;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import org.apache.openjpa.persistence.EntityManagerImpl;
 import entity.Chat;
 import entity.Courses;
 import entity.Students;
-import entity.Users;
 
 public class ChatManager {
 

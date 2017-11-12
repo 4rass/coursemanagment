@@ -26,6 +26,7 @@ public class Chat {
 	
 	private String massage;
 	
+	
 	public Chat(){
 		
 	}

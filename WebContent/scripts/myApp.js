@@ -100,8 +100,16 @@
 			
 		});
 		
-		app.controller('studentCtrl', function($scope, $http) {
-			
+		app.controller('studentCtrl', function($scope, $http,$location) {
+
+				$scope.logout=function(){
+					if(confirm("log out?")== true){
+						$location.path("/");
+						$(".body1").hide();
+					}
+				}
+		
+
 			if(userType=="student"){
 				$("#newSubject").hide();
 				$("#newSubject1").hide();

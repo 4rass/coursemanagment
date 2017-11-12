@@ -156,5 +156,6 @@ public class CoursesManager {
 		String sql= "SELECT * FROM courses where courseSubject =" + courseSubject+" ";
 		return (List) entityManager.createNativeQuery(sql , Courses.class).getResultList();		
 	}
+	
 }
 	
