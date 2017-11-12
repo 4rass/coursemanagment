@@ -26,6 +26,10 @@ public class Chat {
 	
 	private String massage;
 	
+	public Chat(){
+		
+	}
+	
 	public Chat( Students student,Courses course,String date,String massage){
 		this.student=student;
 		this.course=course;

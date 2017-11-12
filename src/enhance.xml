@@ -5,7 +5,7 @@
 
 	<!-- Location of JPA entity .java files in relation to project -->
 	<property name="bin"
-		location="C:/dev/webapps/coursemanagment/WEB-INF/classes" />
+		location="C:/dev/tomcat/webapps/coursemanagment/WEB-INF/classes" />
 	<!-- <property name="bin" location="../build/classes"/> -->
 
 
