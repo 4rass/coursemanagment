@@ -74,7 +74,6 @@
 					
 				/*	$scope.courseId  = result.course.id;
 					console.log($scope.courseId);*/
-				//fdsf
 				
 				var d = new Date();
 				var date1 = d.getFullYear();
@@ -120,7 +119,6 @@
 				$scope.allsubject = response.data;
 			});
 			
-			
 			 $scope.associate = function(id){
 					
 				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
@@ -133,7 +131,6 @@
 						}
 				 })
 			}
-			  
 			
 		});
 		app.controller('managerCtrl', function($scope, $http,$location) {
@@ -152,8 +149,6 @@
 				 })
 			}
 			  
-			
-			
 			$http.get("http://localhost/coursemanagment/rest/coursesService/ActiveCourse")
 			.then(function(response) {
 				$scope.allCourses = response.data;
