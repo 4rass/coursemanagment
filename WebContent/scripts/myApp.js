@@ -107,7 +107,6 @@
 						$(".body1").hide();
 					}
 				}
-		
 
 			if(userType=="student"){
 				$("#newSubject").hide();
@@ -131,11 +130,8 @@
 						}
 				 })
 			}
-			
 		});
 		app.controller('managerCtrl', function($scope, $http,$location) {
-			
-			
 			$scope.associate = function(id){
 				
 				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
