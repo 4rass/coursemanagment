@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
@@ -19,6 +21,11 @@ public class RoomsService {
 		return ManagerHelper.getRoomsManager().get(id);
 	}
 	
-	
+	@GET
+	@Path("getAllRooms")
+	public List<Rooms> getAllRooms(){
+		return ManagerHelper.getRoomsManager().getAllRooms();
+	}
+
 
 }

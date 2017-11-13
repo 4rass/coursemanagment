@@ -133,7 +133,7 @@ public class LecturersManager {
 	 * @return
 	 */
 	public List<Lecturers> getAllLecturers(){
-		String sql="SELECT * coursemanagment.lecturers ";
+		String sql="SELECT * FROM coursemanagment.lecturers ";
 		return entityManager.createNativeQuery(sql, Lecturers.class).getResultList();
 	}
 

@@ -1,23 +1,22 @@
 
-<div class="container">
+<div >
 
-<article>
-  <div class="box" 
-		 data-ng-repeat="course in associated">
-		
-			<header >
-			  <h3>{{course.courseName}}</h3>
-			  <h4>{{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
+	<article>
+		<div class="box well" data-ng-repeat="course in associated" style="margin-right: 2%; ">
+
+			<header>
+				<h3>{{course.courseName}}</h3>
+				<h4>{{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
 			</header>
-			<div >
-			  <hr>
-			  <p>{{course.description}}</p>
+			<div>
+				<hr>
 			</div>
-			<button >+ Register</button>
-			
-	</div>
-		 
-</article>
+			<button class="btn btn-success btn-md" style="margin-left: 13%; ">
+			<span class="glyphicon glyphicon-plus-sign"></span>Register</button>
+
+		</div>
+
+	</article>
 
 
 

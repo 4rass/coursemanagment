@@ -1,27 +1,113 @@
 
-
-
-<div class="container">
-<a href=""><button class="btn btn-info">add Course</button></a>
+<div >
+<a > add Course<button class="btn btn-info" data-toggle="modal" data-target="#addmyModal">+</button></a>
 
 <article>
-  <div  style="background-image:  url('images/images.png'); display:inline-block; 
-		 margin-right:20px;  width: 300px;" class="w3-card-4" 
-		 data-ng-repeat="course in associated" >
+  <div   style="margin-right: 2%;" class="box well"
+		 data-ng-repeat="course in associated" data-ng-click="">
 		
 			<header>
-			<button type="button"  class="glyphicon glyphicon-pencil" data-ng-click="edit($index)" style="float: right; background-color:cadetblue" ></button>
-			<button type="button" class="glyphicon glyphicon-trash " data-ng-click="remove($index)" style="float: right; background-color:cadetblue"></button>
+			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-sm"
+		data-toggle="modal" data-target="#myModal" data-ng-click="edit($index)" style="float: right; " >
+			</button>
+		
+			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-sm"
+			 data-ng-click="remove($index)" style="float: right; "></button>
 			  <h3>{{course.courseName}}</h3>
 			  <h4>{{course.lecturer.firstName+" "+course.lecturer.lastName}}</h4>
 			</header>
 			<div >
 			  <hr>
-			  <p>{{course.description}}</p>
 			
 			</div>
 			
 		</div>
+		
+  <div class="modal fade" id="addmyModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">add Course</h4>
+        </div>
+       <!--  <div align="center" style="width: 80%; margin: 15px; background-color: white;">
+		<div align="center" style="width: 50%; margin: 50px; border: 1px solid gray; background-color: cadetblue  "> -->
+		<div style="margin: 50px; background-color: white">
+			<form>
+					<br>Course Name:<br> <input type="text" class="form-control" placeholder="Enter Course Name" data-ng-model="addcourseName">
+					<br>Lecture:<br> <select  data-ng-model="addlecture">
+						<option data-ng-repeat="lecture in allLecturers" value="{{lecture.id}}">{{lecture.firstName+" "+lecture.lastName}}</option>
+					</select><br>
+					<br>Course Subject:<br> <select  data-ng-model="addcourseSubject">
+						<option data-ng-repeat="courseSubject in allCourseSubject" value="{{courseSubject.id}}">{{courseSubject.subject}}</option>
+					</select><br>
+					<br>Room:<br> <select  data-ng-model="addroom">
+						<option data-ng-repeat="room in allRooms" value="{{room.id}}">{{room.roomNumber}}</option>
+					</select><br>
+					<br>Start Date:<br><input type="date" class="form-control addstartdate" placeholder="Enter start date.." ><!-- data-ng-model="startDate" -->
+					<br>End Data:<br> <input type="date" class="form-control addenddate" placeholder="Enter end date.." ><br><!-- data-ng-model="enDate" -->
+					<br>Description:<br><input type="text" class="form-control" placeholder="Enter description.." data-ng-model="adddescription"><br>
+					<br>Active:<br><input type="checkbox"  data-ng-model="addisActive">
+					<p style="color: red;">* If you do not check the box the course was not active</p>
+				</form>
+			</div>
+			<div align="center">
+			<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=addCourse(x)>add</button>
+			<button type="button" class="btn btn-danger" data-ng-click=resrartCourse()>restart</button>
+			</div>
+			</div>
+		</div>	
+       <!--  <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update Course</h4>
+        </div>
+       <!--  <div align="center" style="width: 80%; margin: 15px; background-color: white;">
+		<div align="center" style="width: 50%; margin: 50px; border: 1px solid gray; background-color: cadetblue  "> -->
+		<div style="margin: 50px; background-color: white">
+			<form>
+					<br>Course Name:<br> <input type="text" class="form-control" placeholder="Enter Course Name" data-ng-model="upcourseName">
+					<br>Lecture:<br> <select  data-ng-model="uplecture">
+						<option data-ng-repeat="lecture in allLecturers" value="{{lecture.id}}">{{lecture.firstName+" "+lecture.lastName}}</option>
+					</select><br>
+					<br>Course Subject:<br> <select  data-ng-model="upcourseSubject">
+						<option data-ng-repeat="courseSubject in allCourseSubject" value="{{courseSubject.id}}">{{courseSubject.subject}}</option>
+					</select><br>
+					<br>Room:<br> <select  data-ng-model="uproom">
+						<option data-ng-repeat="room in allRooms" value="{{room.id}}">{{room.roomNumber}}</option>
+					</select><br>
+					<br>Start Date:<br><input type="date" class="form-control upstartdate" placeholder="Enter start date.." ><!-- data-ng-model="startDate" -->
+					<br>End Data:<br> <input type="date" class="form-control upenddate" placeholder="Enter end date.." ><br><!-- data-ng-model="enDate" -->
+					<br>Description:<br><input type="text" class="form-control" placeholder="Enter description.." data-ng-model="updescription"><br>
+					<br>Active:<br><input type="checkbox"  data-ng-model="upisActive">
+					<p style="color: red;">* If you do not check the box the course was not active</p>
+				</form>
+			</div>
+			<div align="center">
+			<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=updateCourse(x)>update</button>
+			<button type="button" class="btn btn-danger" data-ng-click=restartCourse()>restart</button>
+			</div>
+			</div>
+		</div>	
+       <!--  <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+      </article>
+    </div>
+ <!--  </div>
+</div> -->
 		 
-</article>
-</div>
+
+
+
+ 
+		

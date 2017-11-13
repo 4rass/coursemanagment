@@ -1,53 +1,81 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="windows-1255">
-		<title>AT&T</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet"
+<head>
+<meta charset="windows-1255">
+<title>AT&T</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-		<link href="myApp.css" rel="stylesheet">
-		<script src="myApp.js"></script>	
-	
-	</head>
-	<body class="body" data-ng-app="myApp" data-ng-controller="studentCtrl">
-		<header class="body1">
-	
-			<span style="font-size: 25px" class="glyphicon glyphicon-bell" data-ng-click=""></span>&nbsp;
-			<span  style="font-size: 25px" class="glyphicon glyphicon-home" data-ng-click=""></span>&nbsp;
-			<span  style="font-size: 25px" class="fa fa-commenting" data-ng-click=""></span>&nbsp;
-			<span  style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>&nbsp;
-			<span  style="font-size: 25px" class="fa fa-cloud-download" data-ng-click=""></span>&nbsp;
-			<button type="button" class="btn btn-unique" style="float: right;"  data-ng-click="logout()">log out</button>
-		</header>	  
-		
-		<nav>
-		
-			<img class="body1" src="../images/images.png" style="width:100px" ></img>
-			<hr><br>
-			 <section class="body1">
-		      	  <input type="text" class="search" />
-		    </section>
-		  <h5 class="body1">My Courses</h5>
-		  
-		  <button  class="body1"  data-ng-click="addNewSubject(newSubject)" id ="newSubject">+Add New Subject</button>
-		  <input  class="body1" data-ng-model="newSubject" type="text" placeholder="Insert New Subject" id ="newSubject1">
-		  
-		  <div>
-				<ul id="ulNav" class="body1" data-ng-repeat= "x in allsubject" >
-				<li data-ng-click="associate(x.id)" value="{{x.id}}">{{x.subject}}</li>			
-				</ul>
-		</div>
+
+<link href="myApp.css" rel="stylesheet">
+<script src="myApp.js"></script>
+
+</head>
+<body class="body" data-ng-app="myApp" data-ng-controller="studentCtrl">
+	<header class="body1">
+		<table class="table">
+			<tr>
+				<td><img class="body1" src="../images/AT&T.png"
+					style="float: left;" width="20%"></img></td>
+
+				<td style="float: right;"><span style="font-size: 25px"
+					class="glyphicon glyphicon-bell" data-ng-click=""></span>&nbsp; <span
+					style="font-size: 25px" class="glyphicon glyphicon-home"
+					data-ng-click=""></span>&nbsp; <span style="font-size: 25px"
+					class="fa fa-commenting" data-ng-click=""></span>&nbsp; <span
+					style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>&nbsp;
+
+					<span style="font-size: 25px" class="fa fa-cloud-download"
+					data-ng-click=""></span></td>
+				<td>
+					<button type="button" class="btn btn-danger" style="float: right;"
+						data-ng-click="logout()">
+						<span class="glyphicon glyphicon-log-out"></span> &nbsp; log out
+					</button>
+				</td>
+			</tr>
+		</table>
+
+	</header>
+
+	<div class="">
+		<div class="row">
+			<div class="col-md-3">
+				<nav>
+					<img class="body1" src="../images/avatar_hat.jpg"
+						style="width: 150px" height="100px"></img>
+					<hr>
+					<br>
+					<section class="body1">
+						<input type="text" class="search" />
+					</section>
+					<h5 class="body1">My Courses</h5>
+
+					<button class="body1" data-ng-click="addNewSubject(newSubject)"
+						id="newSubject">+Add New Subject</button>
+					<input class="body1" data-ng-model="newSubject" type="text"
+						placeholder="Insert New Subject" id="newSubject1">
+
+					<div>
+						<ul id="ulNav" class="body1 menu" data-ng-repeat="x in allsubject">
+							<li data-ng-click="associate(x.id)" value="{{x.id}}">{{x.subject}}</li>
+						</ul>
+					</div>
+
 		<!-- <div>
 			<ul class="body1">
 				<li>
@@ -55,11 +83,15 @@
 				</li>
 			</ul>
 		</div> -->
-		
-		</nav>			
-		<div id="divView" data-ng-view></div>
-		<footer class="body1"> &copy; footer</footer>
-	</body>
+				</nav>
+			</div>
+			<div id="divView" class="col-md-9" data-ng-view></div>
 
-	
+		</div>
+	</div>
+	<footer class="body1 footer"> &copy; footer</footer>
+
+</body>
+
+
 </html>

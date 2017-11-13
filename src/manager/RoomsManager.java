@@ -1,5 +1,7 @@
 package manager;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.apache.openjpa.persistence.EntityManagerImpl;
@@ -39,5 +41,11 @@ public class RoomsManager {
 		return entityManager.find(Rooms.class, id);
 	}
 
+
+
+	public List<Rooms> getAllRooms () {
+		String sql="SELECT * FROM coursemanagment.Rooms;";
+		return entityManager.createNativeQuery (sql,Rooms.class).getResultList();
+	}
 
 }

@@ -54,7 +54,7 @@ public class LecturersService {
 	@GET
 	@Path("getAllLecturers")
 	public List<Lecturers> getAllLecturers(){
-		return (List)ManagerHelper.getLecturersManager().getAllLecturers();
+		return ManagerHelper.getLecturersManager().getAllLecturers();
 		
 	}
 	
