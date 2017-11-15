@@ -1,10 +1,44 @@
+		<div >
+			<div class="col-md-3 sidenav"  >
+				<nav class="nav nav-pills nav-stacked">
+					<img  src="../images/avatar_hat.jpg"
+						style="width: 150px" height="100px"></img>
+						<div class="chip">
+							 {{usersName.firstName}} {{usersName.lastName}}
+						</div>
+					<hr>
+					<br>
+					<section >
+						<input type="text" class="search" />
+					</section>
+					<span class="label label-primary">Java</span>
+					<span class="label label-default">Web</span>
+					<span class="label label-success">Bran</span>
+					<h5 >My Courses</h5>
 
-<div >
+					<button class=" btn btn-primary" data-ng-click="addNewSubject(newSubject)"
+						id="newSubject">+Add New Subject</button>
+					<input  data-ng-model="newSubject" type="text"
+						placeholder="Insert New Subject" id="newSubject1">
+
+					<div>
+						<ul id="ulNav" class=" menu" data-ng-repeat="x in allsubject" >
+							<li data-ng-click="associate(x.id)" value="{{x.id}}" style="cursor: pointer;">{{x.subject}}</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+
+
+
+<div class="col-md-9 sidenav"  >
 <a > add Course<button class="btn btn-info" data-toggle="modal" data-target="#addmyModal">+</button></a>
 
 <article>
-  <div   style="margin-right: 2%;" class="box well"
-		 data-ng-repeat="course in associated" data-ng-click="">
+  <div data-ng-show="associatedCourses"   style="margin-right: 2%;" class="box well"
+		 data-ng-repeat="course in associated" >
 		
 			<header>
 			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-sm"
@@ -22,6 +56,28 @@
 			</div>
 			
 		</div>
+		
+		
+		<div data-ng-show="allCourses"   style="margin-right: 2%;" class="box well"
+		 data-ng-repeat="course in allCourses" >
+		
+			<header>
+			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-sm"
+				data-toggle="modal" data-target="#myModal" data-ng-click="edit($index)" style="float: right; " >
+			</button>
+		
+			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-sm"
+			 data-ng-click="remove($index)" style="float: right; "></button>
+			  <h3>{{course.courseName}}</h3>
+			  <h4>{{course.lecturer.firstName+" "+course.lecturer.lastName}}</h4>
+			</header>
+			<div >
+			  <hr>
+			
+			</div>
+			
+		</div>
+		
 		
   <div class="modal fade" id="addmyModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -70,8 +126,6 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Update Course</h4>
         </div>
-       <!--  <div align="center" style="width: 80%; margin: 15px; background-color: white;">
-		<div align="center" style="width: 50%; margin: 50px; border: 1px solid gray; background-color: cadetblue  "> -->
 		<div style="margin: 50px; background-color: white">
 			<form>
 					<br>Course Name:<br> <input type="text" class="form-control" placeholder="Enter Course Name" data-ng-model="upcourseName">
@@ -92,14 +146,15 @@
 				</form>
 			</div>
 			<div align="center">
-			<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=updateCourse(x)>update</button>
-			<button type="button" class="btn btn-danger" data-ng-click=restartCourse()>restart</button>
+			
 			</div>
 			</div>
 		</div>	
-       <!--  <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> -->
+	         <div class="modal-footer">
+	          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	          	<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=updateCourse(x)>update</button>
+			<button type="button" class="btn btn-danger" data-ng-click=restartCourse()>restart</button>
+	        </div> 
       </div>
       </article>
     </div>

@@ -18,13 +18,13 @@ public class ChatService {
 			@QueryParam("course")int course,
 			@QueryParam("date")String date,
 			@QueryParam("massage")String massage){
-		return ManagerHelper.getChatManager().createNewMassage(user, course, date, massage);
+		return ManagerHelper.getChatManager().createNewMassage(user,date, massage);
 	}
 	
 	@GET
 	@Path("getAllMassages")
-	public List<Chat> getAllMassages(){
-		return ManagerHelper.getChatManager().getAllMassages();
+	public List<Chat> getAllMassages(@QueryParam("id")int id){
+		return ManagerHelper.getChatManager().getAllMassages(id);
 	}
 		
 	@GET

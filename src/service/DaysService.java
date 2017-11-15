@@ -85,5 +85,10 @@ public class DaysService {
 				@QueryParam("course")int course) {
 			return ManagerHelper.getDaysManager().updateDaysToCourses(id, date, agenda, startTime, endTime, course);
 		}
-			
+		
+		@GET
+		@Path("getDaysAssociateToCourseById")
+		public List<Days> getDaysAssociateToCourseById (@QueryParam("id")int id){
+			return ManagerHelper.getDaysManager().getDaysAssociateToCourseById(id);
+		}
 }

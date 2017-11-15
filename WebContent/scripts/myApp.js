@@ -4,13 +4,10 @@
 			$routeProvider.when("/", {
 				templateUrl : "loginPage.html",
 				controller : "userCtrl"
-			}).when("/chat", {
-				templateUrl : "chat.html",
-				controller : "chatCtrl"
-			}).when("/lectur", {
-				templateUrl : "templateUrl.html",
-				controller : "controller"
-			}).when("/admin", {
+			}).when("/coursesId", {
+				templateUrl : "photoshop.html",
+				controller : "courseCtrl"
+			}).when("/lecture", {
 				templateUrl : "templateUrl.html",
 				controller : "managerCtrl"
 			}).when("/studentPage", {
@@ -22,7 +19,7 @@
 			
 			});
 		});
-		
+		var courseId;
 		var userId;
 		var userType;
 		app.controller('userCtrl', function($scope, $http,$location) {
@@ -55,59 +52,32 @@
 					}
 				});
 			}
+			
+			$scope.logout=function(){
+				if(confirm("log out?")== true){
+					$location.path("/");
+					$(".body1").hide();
+				}
+			}
 		});
 		
+	/*	
 		app.controller('chatCtrl',function($scope,$http){
-				$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages")
-				.then(function(response) {
-					$scope.allMassages = response.data;
-					
-				});
+		
 			
-			$scope.sendMassage = function(){
-				
-				
-				$http.get("http://localhost/coursemanagment/rest/chatService/getCourseIdAssociateToUserId?userId="+userId)
-				.then(function(response){
-					var result = response.data;
-					console.log($scope.result);
-					
-				/*	$scope.courseId  = result.course.id;
-					console.log($scope.courseId);*/
-				
-				var d = new Date();
-				var date1 = d.getFullYear();
-				var date2 = d.getMinutes();
-				var date3 = d.getDate();
-				var date4 = d.getHours();
-				var date5 = d.getMinutes();
-				var date6 = d.getSeconds();
-				
-				var date = date1+"-"+date2+"-"+date3+" "+date4+":"+date5+":"+date6;
-				
-				$http.get("http://localhost/coursemanagment/rest/chatService/createNewMassage?user="+userId+
-						"&course="+result.course.id+"&date="+date+"&massage="+$scope.massageText).then(function(response){
-							$scope.result1 = response.data;
-							if(result1 != null)
-							{
-								alert('massage sent !');
-							}
-				});
-				
-				});
-			}
-			
-		});
+		});*/
 		
 		app.controller('studentCtrl', function($scope, $http,$location) {
-
-				$scope.logout=function(){
-					if(confirm("log out?")== true){
-						$location.path("/");
-						$(".body1").hide();
-					}
-				}
-
+			
+			console.log(userId);
+			$http.get("/coursemanagment/rest/student/getStudentNameByUserId?id="+userId)
+			.then(function(response) {
+				$scope.usersName = response.data;
+				
+				console.log($scope.usersName);
+			});
+			
+			
 			if(userType=="student"){
 				$("#newSubject").hide();
 				$("#newSubject1").hide();
@@ -119,10 +89,12 @@
 			});
 			
 			 $scope.associate = function(id){
-					
 				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
 				.then(function(response) {
 					$scope.associated = response.data;
+					
+					
+					
 					console.log($scope.associated);
 					if($scope.associated == null){
 						alert("Thers are NO courses in this subject");
@@ -130,9 +102,101 @@
 						}
 				 })
 			}
+			 
+
+				$scope.getCourseDetailes = function(id){
+					alert(id);
+					
+					courseId = id;
+					$location.path("/coursesId");
+				}
 		});
+		
+		
+		app.controller('courseCtrl' , function($scope,$http,$location){
+			
+			$scope.returnBackToStudentPage = function (){
+				$location.path("/studentPage");
+			}
+			
+			
+			$http.get("http://localhost/coursemanagment/rest/coursesService/getCoursesById?id="+courseId)
+			.then(function(response) {
+				$scope.courseDetailes = response.data;
+				console.log($scope.courseDetailes);
+				
+			});
+			
+
+			$http.get("http://localhost/coursemanagment/rest/daysService/getDaysAssociateToCourseById?id="+courseId)
+			.then(function(response) {
+				$scope.courseDays= response.data;
+				console.log($scope.courseDays);
+				
+			});
+			
+			
+			$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages?id="+courseId)
+			.then(function(response) {
+				$scope.allMassages = response.data;
+				
+			});
+		
+			
+			$scope.sendMassage = function(){
+			var d = new Date();
+			var date1 = d.getFullYear();
+			var date2 = d.getMonth();
+			var date3 = d.getDate();
+			var date4 = d.getHours();
+			var date5 = d.getMinutes();
+			var date6 = d.getSeconds();
+			
+			var date = date1+"-"+date2+"-"+date3+" "+date4+":"+date5+":"+date6;
+			
+			console.log(date)
+			
+			$http.get("http://localhost/coursemanagment/rest/chatService/createNewMassage?user="+userId+
+					"&course="+courseId+"&date="+date+"&massage="+$scope.massageText).then(function(response){
+						$scope.result1 = response.data;
+						if($scope.result1 != null)
+						{
+							$scope.massageText='';
+							alert('massage sent !');
+							
+							$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages?id="+courseId)
+							.then(function(response) {
+								$scope.allMassages = response.data;
+								
+							});
+							
+						}
+			});
+			
+			
+			}
+			
+		})
+		
+		
+		
+		
 		app.controller('managerCtrl', function($scope, $http,$location) {
+			
+			$scope.allCourses = true;
+			$scope.associatedCourses = false;
+			
+			$http.get("/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
+			.then(function(response) {
+				$scope.allsubject = response.data;
+			});
+			
+			
 			$scope.associate = function(id){
+				
+				$scope.associatedCourses = true;
+				$scope.allCourses = false;
+				
 				
 				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
 				.then(function(response) {
@@ -153,11 +217,15 @@
 					.then(function(response) {
 						alert("eee");
 						$scope.allLecturers = response.data;
+						
 					console.log($scope.allLecturers);
+					
+					
 				 $http.get("http://localhost/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
 					.then(function(response) {
 						$scope.allCourseSubject = response.data;
 						console.log($scope.allCourseSubject);
+						
 				 $http.get("http://localhost/coursemanagment/rest/rooms/getAllRooms")
 					.then(function(response) {
 						$scope.allRooms = response.data;
@@ -166,6 +234,7 @@
 					});
 					});
 			});
+			
 			
 			/*  remove the course */
 			 $scope.remove = function(x) {

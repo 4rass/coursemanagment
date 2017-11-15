@@ -1,23 +1,44 @@
+		<div >
+			<div class="col-md-3 sidenav"  >
+				<nav class="nav nav-pills nav-stacked">
+					<img  src="../images/avatar_hat.jpg"
+						style="width: 150px" height="100px"></img>
+						<div class="chip">
+							 {{usersName.firstName}} {{usersName.lastName}}
+						</div>
+					<hr>
+					<br>
+					<section >
+						<input type="text" class="search" />
+					</section>
+					<span class="label label-primary">Java</span>
+					<span class="label label-default">Web</span>
+					<span class="label label-success">Bran</span>
+					<h5 >My Courses</h5>
 
-<div >
+					<button class=" btn btn-primary" data-ng-click="addNewSubject(newSubject)"
+						id="newSubject">+Add New Subject</button>
+					<input  data-ng-model="newSubject" type="text"
+						placeholder="Insert New Subject" id="newSubject1">
 
-	<article>
-		<div class="box well" data-ng-repeat="course in associated" style="margin-right: 2%; ">
-
-			<header>
-				<h3>{{course.courseName}}</h3>
-				<h4>{{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
-			</header>
-			<div>
-				<hr>
+					<div>
+						<ul id="ulNav" class=" menu" data-ng-repeat="x in allsubject" >
+							<li data-ng-click="associate(x.id)" value="{{x.id}}" style="cursor: pointer;">{{x.subject}}</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
-			<button class="btn btn-success btn-md" style="margin-left: 13%; ">
-			<span class="glyphicon glyphicon-plus-sign"></span>Register</button>
-
 		</div>
-
-	</article>
-
-
-
-</div>
+	
+	
+<div>
+		<div data-ng-repeat="course in associated" class="box well col-md-9"  style="margin-right: 2%;" >
+				<header >
+					<h3>{{course.courseName}}</h3>
+					<h4> By {{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
+				</header>
+		
+				<a ><button data-ng-click="getCourseDetailes(course.id)" class="btn btn-success btn-md" style="margin-left: 13%; ">
+				<span class="glyphicon glyphicon-plus-sign"></span>Register</button></a>
+		</div>
+	</div>

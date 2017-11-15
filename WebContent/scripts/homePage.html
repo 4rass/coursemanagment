@@ -24,22 +24,21 @@
 <script src="myApp.js"></script>
 
 </head>
-<body class="body" data-ng-app="myApp" data-ng-controller="studentCtrl">
+<body class="body " data-ng-app="myApp" >
 	<header class="body1">
 		<table class="table">
 			<tr>
 				<td><img class="body1" src="../images/AT&T.png"
-					style="float: left;" width="20%"></img></td>
+					style="float: left;" width="20%"></img>
+				</td>
 
-				<td style="float: right;"><span style="font-size: 25px"
-					class="glyphicon glyphicon-bell" data-ng-click=""></span>&nbsp; <span
-					style="font-size: 25px" class="glyphicon glyphicon-home"
-					data-ng-click=""></span>&nbsp; <span style="font-size: 25px"
-					class="fa fa-commenting" data-ng-click=""></span>&nbsp; <span
-					style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>&nbsp;
-
-					<span style="font-size: 25px" class="fa fa-cloud-download"
-					data-ng-click=""></span></td>
+				<td style="float: right;">
+					<span style="font-size: 25px" class="glyphicon glyphicon-bell" data-ng-click=""></span>&nbsp;
+					 <span style="font-size: 25px" class="glyphicon glyphicon-home" data-ng-click="mHomePage()">  </span>&nbsp;
+					  <span style="font-size: 25px" class="fa fa-commenting" data-ng-click=""></span>&nbsp;
+					   <span style="font-size: 25px" class="fa fa-cloud-upload" data-ng-click=""></span>&nbsp;
+					   <span style="font-size: 25px" class="fa fa-cloud-download"data-ng-click=""></span>
+				   </td>
 				<td>
 					<button type="button" class="btn btn-danger" style="float: right;"
 						data-ng-click="logout()">
@@ -49,48 +48,19 @@
 			</tr>
 		</table>
 
+		
 	</header>
-
-	<div class="">
-		<div class="row">
-			<div class="col-md-3">
-				<nav>
-					<img class="body1" src="../images/avatar_hat.jpg"
-						style="width: 150px" height="100px"></img>
-					<hr>
-					<br>
-					<section class="body1">
-						<input type="text" class="search" />
-					</section>
-					<h5 class="body1">My Courses</h5>
-
-					<button class="body1" data-ng-click="addNewSubject(newSubject)"
-						id="newSubject">+Add New Subject</button>
-					<input class="body1" data-ng-model="newSubject" type="text"
-						placeholder="Insert New Subject" id="newSubject1">
-
-					<div>
-						<ul id="ulNav" class="body1 menu" data-ng-repeat="x in allsubject">
-							<li data-ng-click="associate(x.id)" value="{{x.id}}">{{x.subject}}</li>
-						</ul>
-					</div>
-
-		<!-- <div>
-			<ul class="body1">
-				<li>
-						<a href="#!chat" > Massage Board </a>
-				</li>
-			</ul>
-		</div> -->
-				</nav>
-			</div>
-			<div id="divView" class="col-md-9" data-ng-view></div>
-
-		</div>
-	</div>
-	<footer class="body1 footer"> &copy; footer</footer>
+	<div id="divView" class="row content" data-ng-view></div>
+	<footer class="body1 footer container-fluid"> &copy; footer</footer>
 
 </body>
-
-
+<script type="text/javascript">
+var app = angular.module('myApp', ["ngRoute"]);
+app.controller('homePage', function($scope, $http,$location) {
+$scope.mHomePage = function(){
+	$scope.allCourses = true;
+	$scope.associatedCourses = false;
+	$location.path('/managerPage');
+}
+</script>
 </html>

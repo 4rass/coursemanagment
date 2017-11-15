@@ -16,7 +16,6 @@ div.container {
 
 header, footer {
 	color: black;
-	background-color: white;
 	clear: left;
 	text-align: center;
 }
@@ -92,8 +91,8 @@ article {
 	background-color: #ffffff;
 }
 
+
 .box {
-	 background-image: url('images/images.png'); 
 	width: 20%;
 	/* height: 300px; */
 	float: left;
@@ -101,7 +100,10 @@ article {
 	
 }
 .footer{
-	min-height: 900
+}
+
+.row {
+	margin-left: 0px;
 }
 
 .search {

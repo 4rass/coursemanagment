@@ -27,13 +27,12 @@ public class ChatManager {
 		entityManager.getTransaction().commit();
 	}
 
-	public Chat createNewMassage(int student1,int course1,String date,String massage) {
+	public Chat createNewMassage(int course1,String date,String massage) {
 		
-		Students student = ManagerHelper.getStudentsManager().get(student1);
 		Courses course = ManagerHelper.getCoursesManager().get(course1);
 		
 		
-		Chat chat = new Chat(student, course, date, massage);
+		Chat chat = new Chat( course, date, massage);
 		try{
 		entityManager.getTransaction().begin();
 		entityManager.persist(chat);
@@ -45,8 +44,8 @@ public class ChatManager {
 	
 	}
 
-	public List<Chat> getAllMassages(){
-		String sql = "SELECT * FROM coursemanagment.chat";
+	public List<Chat> getAllMassages(int id){
+		String sql = "SELECT * FROM coursemanagment.chat where course="+id;
 		return (List)entityManager.createNativeQuery(sql, Chat.class).getResultList();
 	}
 	

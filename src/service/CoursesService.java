@@ -17,7 +17,7 @@ public class CoursesService {
 		@GET
 		@Path("getCoursesById")
 		public Courses getCoursesById(@QueryParam("id") int id){
-			return ManagerHelper.getCoursesManager().get(id); 
+			return ManagerHelper.getCoursesManager().getCourseById(id); 
 		}
 	
 

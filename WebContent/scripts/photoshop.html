@@ -1,25 +1,59 @@
 
-<div >
+<div class="row">
+<div class="col-md-9">
 
-	<article>
-		<div class="box ">
-			<div data-ng-repeat="course in associate">
-				<header>
-					<h3>{{course.courseName}}</h3>
-					<h4>{{course.lecture}}</h4>
-				</header>
-			</div>
-			<div>
-				<hr>
-			</div>
-			<button>
-				<a>+ Register</a>
-			</button>
+<button class="btn btn-primary" data-ng-click="returnBackToStudentPage()"> Back</button>
+<h1><b>General</b></h1>
+<div class="well" id="general">
 
+		<div >
+					<h3> {{courseDetailes.courseName}} </h3>
+					<h4>By : {{courseDetailes.lecturer.firstName}}  {{courseDetailes.lecturer.lastName}}</h4>
 		</div>
-
+				<div><hr></div>
+				
+				<div>{{courseDetailes.description}}</div>
+</div>
+<!-- =========================Syllabus================================================= -->
+<h1><b>Syllabus</b></h1>
+<div class="well" id="sylabus">
+		<div data-ng-repeat="day in courseDays">
+					<h1> Day {{$index+1}} </h1>
+					<h4>{{day.agenda}} </h4>
+		</div>
+</div>
+<!-- ============================Schedule============================================ -->
+<h1><b>Schedule</b></h1>
+<div class="well" id="schedule">
+		<div>
+			<div data-ng-repeat="day in courseDays">
+					<h3> Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
+		</div>
+		</div>
+</div>
+<!-- ===========================Chat=================================================== -->
+<div >
+	<h1><b>Massage Board</b></h1>
+	<article>
+		<hr>
+		<form>
+			<div class="well form-group" data-ng-repeat="massage in allMassages">
+				<img src="http://placehold.it/50/55C1E7/fff&text=U"
+					alt="User Avatar" class="img-circle" style="float: left;">
+				<div class="header">
+					<strong class="primary-font">{{massage.student.firstName}}</strong>
+					<small class="pull-right text-muted"> <span
+						class="glyphicon glyphicon-time"> </span>{{massage.date}} ago
+					</small>
+				</div>
+				<div>{{massage.massage}}</div>
+			</div>
+		</form>
+		<textarea class="form-control" data-ng-model="massageText"></textarea>
+		<button class="btn btn-primary" data-ng-click="sendMassage()">
+			<i class="glyphicon glyphicon-send"></i><a>&nbsp;</a>Send
+		</button>
 	</article>
-
-
-
+</div>
+</div>
 </div>

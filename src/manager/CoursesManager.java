@@ -137,6 +137,7 @@ public class CoursesManager {
 		return entityManager.find(Courses.class, id);
 	}
 	
+	
 
 	//Lior Asras(3)
 	/**
@@ -155,6 +156,12 @@ public class CoursesManager {
 	public List<Courses>getAssociatedCoursesWithSubject(int courseSubject){
 		String sql= "SELECT * FROM courses where courseSubject =" + courseSubject+" ";
 		return (List) entityManager.createNativeQuery(sql , Courses.class).getResultList();		
+	}
+	
+	public Courses getCourseById(int id){
+		String sql = "select * from courses where id ="+id;
+		return (Courses) entityManager.createNativeQuery(sql, Courses.class).getSingleResult();
+		
 	}
 	
 }

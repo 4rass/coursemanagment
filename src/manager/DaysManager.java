@@ -1,5 +1,7 @@
 package manager;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.apache.openjpa.persistence.EntityManagerImpl;
@@ -107,6 +109,11 @@ public class DaysManager {
 
 	public Days get(int id) {
 		return entityManager.find(Days.class, id);
+	}
+	
+	public List<Days> getDaysAssociateToCourseById (int id){
+		String sql = "SELECT * FROM coursemanagment.days where course ="+id;
+		return(List<Days>) entityManager.createNativeQuery(sql, Days.class).getResultList();
 	}
 
 }

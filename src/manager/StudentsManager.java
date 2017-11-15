@@ -1,5 +1,7 @@
 package manager;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.apache.openjpa.persistence.EntityManagerImpl;
@@ -36,5 +38,13 @@ public class StudentsManager {
 
 	public Students get(Integer id) {
 		return entityManager.find(Students.class, id);
+	}
+	
+	public List<Students> getStudentNameByUserId(int id) {
+		String sql = "select * "+
+				" from coursemanagment.students s "+
+				" inner join coursemanagment.users u on u.id = s.user "+
+				" where u.id = "+id;
+		return (List<Students>)entityManager.createNativeQuery(sql, Students.class).getResultList();
 	}
 }
