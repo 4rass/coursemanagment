@@ -16,12 +16,10 @@ div.container {
 
 header, footer {
 	color: black;
-	clear: left;
 	text-align: center;
 }
 
 .menu ul{
-	list-style-type: none;
     margin: 0;
     padding: 0;
 }
@@ -37,11 +35,16 @@ header, footer {
     background-color: #0099cc;
 }
 
-/* nav {
+ .nav {
 	float: left;
 	margin: 0;
-	width: 180px;
-} */
+	 width: 20%;
+} 
+
+.courseDetailesBtn{
+	margin-bottom: 10px;
+	box-shadow: 10px 10px 5px #888888;
+}
 
 .table>tbody>tr>td, 
 .table>tbody>tr>th, 
@@ -52,6 +55,16 @@ header, footer {
 	border-top: 0px solid ;
 }
 
+.courseDetailes{
+	margin: 50px 50px 50px 50px;
+}
+
+
+.chat{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
 nav ul {
 	list-style-type: none;
 	padding: 0;

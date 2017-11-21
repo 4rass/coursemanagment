@@ -1,75 +1,44 @@
-		<div >
-			<div class="col-md-3 sidenav"  >
-				<nav class="nav nav-pills nav-stacked">
-					<img  src="../images/avatar_hat.jpg"
-						style="width: 150px" height="100px"></img>
-						<div class="chip">
-							 {{usersName.firstName}} {{usersName.lastName}}
-						</div>
-					<hr>
-					<br>
-					<section >
-						<input type="text" class="search" />
-					</section>
-					<span class="label label-primary">Java</span>
-					<span class="label label-default">Web</span>
-					<span class="label label-success">Bran</span>
-					<h5 >My Courses</h5>
-
-					<button class=" btn btn-primary" data-ng-click="addNewSubject(newSubject)"
-						id="newSubject">+Add New Subject</button>
-					<input  data-ng-model="newSubject" type="text"
-						placeholder="Insert New Subject" id="newSubject1">
-
-					<div>
-						<ul id="ulNav" class=" menu" data-ng-repeat="x in allsubject" >
-							<li data-ng-click="associate(x.id)" value="{{x.id}}" style="cursor: pointer;">{{x.subject}}</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
-	
 
 
+<div class="col-md-9">
+<a><button class="btn btn-info" data-toggle="modal" data-target="#addmyModal">+Add New Course</button></a>
 
-<div class="col-md-9 sidenav"  >
-<a > add Course<button class="btn btn-info" data-toggle="modal" data-target="#addmyModal">+</button></a>
-
-<article>
-  <div data-ng-show="associatedCourses"   style="margin-right: 2%;" class="box well"
-		 data-ng-repeat="course in associated" >
+  <div data-ng-show="associatedCourses"  style="margin-right: 2%; pointer-events: auto; cursor: pointer;" 
+  class="box well" data-ng-repeat="course in associated" >
 		
 			<header>
-			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-sm"
+			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-xs"
 		data-toggle="modal" data-target="#myModal" data-ng-click="edit($index)" style="float: right; " >
 			</button>
 		
-			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-sm"
+			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-xs"
 			 data-ng-click="remove($index)" style="float: right; "></button>
-			  <h3>{{course.courseName}}</h3>
-			  <h4>{{course.lecturer.firstName+" "+course.lecturer.lastName}}</h4>
+			  <span class="card-title">{{course.courseName}}</span>
+			   <span class="card-title">By {{course.lecturer.firstName+" "+course.lecturer.lastName}}</span>
 			</header>
 			<div >
 			  <hr>
-			
 			</div>
-			
 		</div>
 		
 		
-		<div data-ng-show="allCourses"   style="margin-right: 2%;" class="box well"
-		 data-ng-repeat="course in allCourses" >
+		<div data-ng-show="allCourses"   style="margin-right: 2%; pointer-events: auto; cursor: pointer;"
+		 class="box well" data-ng-repeat="course in allCourses" >
 		
 			<header>
-			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-sm"
+			<button  class="glyphicon glyphicon-pencil  btn btn-info btn-xs"
 				data-toggle="modal" data-target="#myModal" data-ng-click="edit($index)" style="float: right; " >
 			</button>
 		
-			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-sm"
+			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-xs"
 			 data-ng-click="remove($index)" style="float: right; "></button>
-			  <h3>{{course.courseName}}</h3>
-			  <h4>{{course.lecturer.firstName+" "+course.lecturer.lastName}}</h4>
+			 
+			 <a class="btn btn-success btn-xs"  data-toggle="modal" data-target="#CourseMembers"
+			  data-ng-click="getCourseDetailes(course.id)" style="float: right; ">
+			 <span class="glyphicon glyphicon-info-sign"></span> </a>
+			 
+			 <span class="card-title">{{course.courseName}}</span>
+			   <span class="card-title">By {{course.lecturer.firstName+" "+course.lecturer.lastName}}</span>
 			</header>
 			<div >
 			  <hr>
@@ -88,7 +57,7 @@
         </div>
        <!--  <div align="center" style="width: 80%; margin: 15px; background-color: white;">
 		<div align="center" style="width: 50%; margin: 50px; border: 1px solid gray; background-color: cadetblue  "> -->
-		<div style="margin: 50px; background-color: white">
+		<div class="modal-body">
 			<form>
 					<br>Course Name:<br> <input type="text" class="form-control" placeholder="Enter Course Name" data-ng-model="addcourseName">
 					<br>Lecture:<br> <select  data-ng-model="addlecture">
@@ -107,15 +76,14 @@
 					<p style="color: red;">* If you do not check the box the course was not active</p>
 				</form>
 			</div>
-			<div align="center">
-			<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=addCourse(x)>add</button>
+			 <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=addCourse(x)>add</button>
 			<button type="button" class="btn btn-danger" data-ng-click=resrartCourse()>restart</button>
-			</div>
+        </div> 
 			</div>
 		</div>	
-       <!--  <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> -->
+        
       </div>
 
   <!-- Modal -->
@@ -138,8 +106,8 @@
 					<br>Room:<br> <select  data-ng-model="uproom">
 						<option data-ng-repeat="room in allRooms" value="{{room.id}}">{{room.roomNumber}}</option>
 					</select><br>
-					<br>Start Date:<br><input type="date" class="form-control upstartdate" placeholder="Enter start date.." ><!-- data-ng-model="startDate" -->
-					<br>End Data:<br> <input type="date" class="form-control upenddate" placeholder="Enter end date.." ><br><!-- data-ng-model="enDate" -->
+					<br>Start Date:<br><input type="date" class="form-control upstartdate" placeholder="Enter start date.." >
+					<br>End Data:<br> <input type="date" class="form-control upenddate" placeholder="Enter end date.." ><br>
 					<br>Description:<br><input type="text" class="form-control" placeholder="Enter description.." data-ng-model="updescription"><br>
 					<br>Active:<br><input type="checkbox"  data-ng-model="upisActive">
 					<p style="color: red;">* If you do not check the box the course was not active</p>
@@ -153,11 +121,64 @@
 	         <div class="modal-footer">
 	          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	          	<button type="button" class="btn btn-info  glyphicon glyphicon-ok-sign" data-ng-click=updateCourse(x)>update</button>
-			<button type="button" class="btn btn-danger" data-ng-click=restartCourse()>restart</button>
+			<button type="button" class="btn btn-danger" data-ng-click=restartCourse()>Clean Fields</button>
 	        </div> 
       </div>
-      </article>
+      
+     <!-- ==========================================CorseDetailesModal===================================================== -->
+      
+      	  <div id="modal" data-ng-hide="corseDetailesModal" data-ng-show="corseDetailesModalShow">
+			      	<div >
+			  <div class="modal fade" id="CourseMembers" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <div class="modal-content" >
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title"> Course Detailes :</h4>
+			        </div>
+			        <div class="modal-body">
+			        <div class="card">
+			         <img class="img-circle" src="../images/java.jpeg"  style="width:80%; opacity: 0.4; border: 4px solid red; background-size: !important;;">
+			          	<table>
+			          		 <thead>
+					 			<tr>
+					 				<th  style="text-align: center;">  <span class="glyphicon glyphicon-user"></span></th>
+					 				<th> FIRST NAME</th>
+					        		<th> LAST NAME</th>
+					        		<th> EMAIL</th>
+					        		<th>PHONE</th>
+					        	</tr>
+				        	</thead>
+				        	<tbody>
+				        		<tr data-ng-repeat="student in courseMembers">
+				        			<td><img class="img-circle" src="../images/img_avatar3.png" style="width:50%; float: left; margin:  5px 5px"></td> 
+				        			<td>{{student.student.firstName}}</td>
+				        			<td>{{student.student.lastName}}</td>
+				        			<td>{{student.student.email}}</td>  
+				        			<td style="float: right;">{{student.student.phone}}</td>
+				        		</tr>
+				        	</tbody>
+			          	</table>
+			          	</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			  
+			</div>
+      		
+      
+      </div>
     </div>
+      
+      
+      
+    
  <!--  </div>
 </div> -->
 		 

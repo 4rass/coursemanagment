@@ -1,13 +1,12 @@
 
 <div class="row">
 <div class="col-md-9">
-
 <button class="btn btn-primary" data-ng-click="returnBackToStudentPage()"> Back</button>
 <h1><b>General</b></h1>
-<div class="well" id="general">
+<div class="well courseDetailes" id="1">
 
-		<div >
-					<h3> {{courseDetailes.courseName}} </h3>
+		<div>
+					<h3>{{courseDetailes.courseName}} </h3>
 					<h4>By : {{courseDetailes.lecturer.firstName}}  {{courseDetailes.lecturer.lastName}}</h4>
 		</div>
 				<div><hr></div>
@@ -16,7 +15,7 @@
 </div>
 <!-- =========================Syllabus================================================= -->
 <h1><b>Syllabus</b></h1>
-<div class="well" id="sylabus">
+<div class="well courseDetailes" id="2">
 		<div data-ng-repeat="day in courseDays">
 					<h1> Day {{$index+1}} </h1>
 					<h4>{{day.agenda}} </h4>
@@ -24,7 +23,7 @@
 </div>
 <!-- ============================Schedule============================================ -->
 <h1><b>Schedule</b></h1>
-<div class="well" id="schedule">
+<div class="well courseDetailes" id="3">
 		<div>
 			<div data-ng-repeat="day in courseDays">
 					<h3> Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
@@ -34,16 +33,16 @@
 <!-- ===========================Chat=================================================== -->
 <div >
 	<h1><b>Massage Board</b></h1>
-	<article>
+	<div class="courseDetailes" id="4">
 		<hr>
 		<form>
-			<div class="well form-group" data-ng-repeat="massage in allMassages">
+			<div class="form-group clearfix chat"  data-ng-repeat="massage in allMassages">
 				<img src="http://placehold.it/50/55C1E7/fff&text=U"
 					alt="User Avatar" class="img-circle" style="float: left;">
 				<div class="header">
 					<strong class="primary-font">{{massage.student.firstName}}</strong>
 					<small class="pull-right text-muted"> <span
-						class="glyphicon glyphicon-time"> </span>{{massage.date}} ago
+						class="glyphicon glyphicon-time"></span>{{massage.date}} ago
 					</small>
 				</div>
 				<div>{{massage.massage}}</div>
@@ -53,7 +52,26 @@
 		<button class="btn btn-primary" data-ng-click="sendMassage()">
 			<i class="glyphicon glyphicon-send"></i><a>&nbsp;</a>Send
 		</button>
-	</article>
+	</div>
 </div>
+<!-- =============================Presentations======================================= -->
+<<!-- div id="presentations" >
+	
+	<iframe>
+	
+	</iframe>
+	
+</div> -->
+
+<!-- =============================Resources============================================ -->
+<!-- <div id="resources">
+
+	<iframe>
+	
+	
+	</iframe>
+
+</div> -->
+
 </div>
 </div>

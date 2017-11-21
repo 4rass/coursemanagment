@@ -18,8 +18,14 @@ import manager.ManagerHelper;
 @Path("/CourseMembers")
 public class CourseMembersService {
 	
-	
 
+
+	
+	@GET
+	@Path("getCourseMembersByCourseId")
+	public List<CourseMembers> getCourseMembersByCourseId(@QueryParam("id")int id){
+		return ManagerHelper.getCourseMembersManager().getCourseMembersByCourseId(id);
+	}
 	//Lior Asras(2)
 	/**
 	 * This function get parameter from user-interface and send it to function that

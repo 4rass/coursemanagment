@@ -89,8 +89,6 @@ public class CourseMembersManager {
 	public CourseMembers get(int id) {
 		return entityManager.find(CourseMembers.class, id);
 	}
-
-	
 		/**
 		 * This function get parameter from user-interface and delete  course
 		 * member in data base.
@@ -123,6 +121,10 @@ public class CourseMembersManager {
 	public List<CourseMembers> getAllCourseMembers() {
 		String sql = "select * from coursemembers";
 		return (List) entityManager.createNativeQuery(sql, CourseMembers.class).getResultList();
-		
+	}
+	
+	public List<CourseMembers> getCourseMembersByCourseId(int id){
+		String sql = "SELECT * FROM coursemanagment.coursemembers where course ="+id;
+		return (List)entityManager.createNativeQuery(sql, CourseMembers.class).getResultList();
 	}
 }

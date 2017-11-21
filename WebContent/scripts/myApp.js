@@ -22,6 +22,50 @@
 		var courseId;
 		var userId;
 		var userType;
+		
+		app.controller('homePage', function($scope, $http,$location,$rootScope,$anchorScroll) {
+			
+			 $scope.gotoBottom = function(id){
+				 var newHash = 'anchor' + x;
+			      if ($location.hash() !== newHash) {
+			        $location.hash('anchor' + x);
+			      } else {
+			        $anchorScroll();
+			      }
+			 }
+			    
+			    
+			$scope.logout=function(){
+				if(confirm("log out?")== true){
+					$location.path("/");
+					$(".body1").hide();
+				}
+			}
+			
+			
+			 $scope.associate = function(id){
+					$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
+					.then(function(response) {
+						$scope.associated = response.data;
+						
+						console.log($scope.associated);
+						if($scope.associated == null){
+							alert("Thers are NO assocoate courses in this subject");
+							}else{
+							}
+					 })
+				}
+			 
+			 $http.get("/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
+				.then(function(response) {
+					$scope.allsubject = response.data;
+					$scope.allSubjectBtn = true;
+					$rootScope.allSubjectBtnHide = $scope.allSubjectBtnHide;
+					$rootScope.allSubjectBtn = $scope.allSubjectBtn;
+					$rootScope.courseDetailesBtn = $scope.courseDetailesBtn;
+				});
+				
+		});
 		app.controller('userCtrl', function($scope, $http,$location) {
 			
 			$scope.submit = function() {
@@ -34,13 +78,11 @@
 					}else if ($scope.userim.type == "student") {
 					userId = $scope.userim.id;
 					userType= $scope.userim.type;
-						alert("student");
 						$(".body1").show();
 						$location.path('/studentPage');
 					
 					}else if ($scope.userim.type == "lectur") {
 						userId = $scope.userim.id;
-						alert("lectur");
 						$(".body1").show();
 						/*$location.path('/--LecturPage!!--.html');*/
 						alert("lectur");
@@ -48,75 +90,34 @@
 					}else if ($scope.userim.type == "admin") {
 						$(".body1").show();
 						$location.path('/managerPage');
-						alert("admin");
 					}
+					
+
+					$http.get("http://localhost/coursemanagment/rest/student/getStudentNameByUserId?id="+userId).
+					then(function(response){
+						$scope.usersName = response.data;
+					});
 				});
 			}
 			
-			$scope.logout=function(){
-				if(confirm("log out?")== true){
-					$location.path("/");
-					$(".body1").hide();
-				}
-			}
-		});
-		
-	/*	
-		app.controller('chatCtrl',function($scope,$http){
-		
-			
-		});*/
-		
-		app.controller('studentCtrl', function($scope, $http,$location) {
-			
-			console.log(userId);
-			$http.get("/coursemanagment/rest/student/getStudentNameByUserId?id="+userId)
-			.then(function(response) {
-				$scope.usersName = response.data;
-				
-				console.log($scope.usersName);
-			});
-			
-			
-			if(userType=="student"){
-				$("#newSubject").hide();
-				$("#newSubject1").hide();
-			}
-			
-			$http.get("/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
-			.then(function(response) {
-				$scope.allsubject = response.data;
-			});
-			
-			 $scope.associate = function(id){
-				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
-				.then(function(response) {
-					$scope.associated = response.data;
-					
-					
-					
-					console.log($scope.associated);
-					if($scope.associated == null){
-						alert("Thers are NO courses in this subject");
-						}else{
-						}
-				 })
-			}
-			 
-
-				$scope.getCourseDetailes = function(id){
-					alert(id);
-					
-					courseId = id;
-					$location.path("/coursesId");
-				}
 		});
 		
 		
-		app.controller('courseCtrl' , function($scope,$http,$location){
+		app.controller('courseCtrl' , function($scope,$http,$location,$rootScope){
+			
+			$rootScope.courseDetailesBtn = true;
+			$rootScope.allSubjectBtnHide = true;
 			
 			$scope.returnBackToStudentPage = function (){
-				$location.path("/studentPage");
+				$rootScope.courseDetailesBtn = false;
+				$rootScope.allSubjectBtnHide = false;
+				if(userType == "student"){
+					$location.path("/studentPage");
+				}
+				if(userType == "admin"){
+					$location.path("/managerPage");
+				}
+				
 			}
 			
 			
@@ -124,29 +125,28 @@
 			.then(function(response) {
 				$scope.courseDetailes = response.data;
 				console.log($scope.courseDetailes);
-				
-			});
+			
 			
 
-			$http.get("http://localhost/coursemanagment/rest/daysService/getDaysAssociateToCourseById?id="+courseId)
-			.then(function(response) {
-				$scope.courseDays= response.data;
-				console.log($scope.courseDays);
-				
-			});
+				$http.get("http://localhost/coursemanagment/rest/daysService/getDaysAssociateToCourseById?id="+courseId)
+				.then(function(response) {
+					$scope.courseDays= response.data;
+					console.log($scope.courseDays);
 			
 			
-			$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages?id="+courseId)
-			.then(function(response) {
-				$scope.allMassages = response.data;
-				
+					$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages?id="+courseId)
+					.then(function(response) {
+						$scope.allMassages = response.data;
+						
+					});
+					
+				});
 			});
-		
 			
 			$scope.sendMassage = function(){
 			var d = new Date();
 			var date1 = d.getFullYear();
-			var date2 = d.getMonth();
+			var date2 = d.getMonth()+1;
 			var date3 = d.getDate();
 			var date4 = d.getHours();
 			var date5 = d.getMinutes();
@@ -156,10 +156,10 @@
 			
 			console.log(date)
 			
-			$http.get("http://localhost/coursemanagment/rest/chatService/createNewMassage?user="+userId+
-					"&course="+courseId+"&date="+date+"&massage="+$scope.massageText).then(function(response){
-						$scope.result1 = response.data;
-						if($scope.result1 != null)
+			$http.get("/coursemanagment/rest/chatService/createNewMassage?"+
+					"course="+courseId+"&date="+date+"&massage="+$scope.massageText).then(function(response){
+						$scope.result = response.data;
+						if($scope.result != null)
 						{
 							$scope.massageText='';
 							alert('massage sent !');
@@ -167,7 +167,7 @@
 							$http.get("http://localhost/coursemanagment/rest/chatService/getAllMassages?id="+courseId)
 							.then(function(response) {
 								$scope.allMassages = response.data;
-								
+								console.log($scope.allMassages);
 							});
 							
 						}
@@ -176,38 +176,50 @@
 			
 			}
 			
+			
 		})
 		
+		app.controller('studentCtrl', function($scope, $http,$location,$rootScope) {
+			if(userType=="student"){
+				$("#newSubject").hide();
+				$("#newSubject1").hide();
+			}
+			
+				$scope.getCourseDetailes = function(id){
+					$rootScope.allSubjectBtn = false;
+					alert(id);
+					courseId = id;
+					$location.path("/coursesId");
+				}
+		});
 		
 		
-		
-		app.controller('managerCtrl', function($scope, $http,$location) {
+		app.controller('managerCtrl', function($scope, $http,$location,$rootScope) {
 			
 			$scope.allCourses = true;
 			$scope.associatedCourses = false;
+			$scope.corseDetailesModal = true;
+			
+			$rootScope.corseDetailesModal = $scope.corseDetailesModal;
+			$rootScope.corseDetailesModalShow = $scope.corseDetailesModalShow;
+			
+			$scope.getCourseDetailes = function(id){
+				$rootScope.corseDetailesModalShow = true;
+				alert(id);
+				
+				$http.get("/coursemanagment/rest/CourseMembers/getCourseMembersByCourseId?id="+id)
+				.then(function(response) {
+					$scope.courseMembers = response.data;
+					console.log($scope.courseMembers);
+				});
+				
+			}
 			
 			$http.get("/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
 			.then(function(response) {
 				$scope.allsubject = response.data;
 			});
 			
-			
-			$scope.associate = function(id){
-				
-				$scope.associatedCourses = true;
-				$scope.allCourses = false;
-				
-				
-				$http.get("http://localhost/coursemanagment/rest/coursesService/getAssociatedCoursesWithSubject?CourseSubject="+id)
-				.then(function(response) {
-					$scope.associated = response.data;
-					console.log($scope.associated);
-					if($scope.associated == null){
-						alert("Thers are NO courses in this subject");
-						}else{
-						}
-				 })
-			}
 			  
 			$http.get("http://localhost/coursemanagment/rest/coursesService/ActiveCourse")
 			.then(function(response) {
@@ -221,20 +233,20 @@
 					console.log($scope.allLecturers);
 					
 					
-				 $http.get("http://localhost/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
-					.then(function(response) {
-						$scope.allCourseSubject = response.data;
-						console.log($scope.allCourseSubject);
-						
-				 $http.get("http://localhost/coursemanagment/rest/rooms/getAllRooms")
-					.then(function(response) {
-						$scope.allRooms = response.data;
-						console.log($scope.allRooms);
-					});
-					});
+					 $http.get("http://localhost/coursemanagment/rest/courseSubjectService/getAllCourseSubject")
+						.then(function(response) {
+							$scope.allCourseSubject = response.data;
+							console.log($scope.allCourseSubject);
+							
+						 $http.get("http://localhost/coursemanagment/rest/rooms/getAllRooms")
+							.then(function(response) {
+								$scope.allRooms = response.data;
+								console.log($scope.allRooms);
+						});
 					});
 			});
-			
+		});
+		
 			
 			/*  remove the course */
 			 $scope.remove = function(x) {
@@ -351,7 +363,6 @@
 						 }
 					 }
 			 
-
 		
 				  $scope.addNewSubject = function(newSubject){
 					  

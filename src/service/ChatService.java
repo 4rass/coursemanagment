@@ -14,11 +14,11 @@ public class ChatService {
 
 	@GET
 	@Path("createNewMassage")
-	public Chat createNewMassage(@QueryParam("user")int user,
+	public Chat createNewMassage(
 			@QueryParam("course")int course,
 			@QueryParam("date")String date,
 			@QueryParam("massage")String massage){
-		return ManagerHelper.getChatManager().createNewMassage(user,date, massage);
+		return ManagerHelper.getChatManager().createNewMassage(course,date, massage);
 	}
 	
 	@GET

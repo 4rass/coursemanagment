@@ -30,9 +30,8 @@ public class ChatManager {
 	public Chat createNewMassage(int course1,String date,String massage) {
 		
 		Courses course = ManagerHelper.getCoursesManager().get(course1);
-		
-		
 		Chat chat = new Chat( course, date, massage);
+		
 		try{
 		entityManager.getTransaction().begin();
 		entityManager.persist(chat);
