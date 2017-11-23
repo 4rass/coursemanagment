@@ -30,7 +30,7 @@
 				data-toggle="modal" data-target="#myModal" data-ng-click="edit($index)" style="float: right; " >
 			</button>
 		
-			<button  class="glyphicon glyphicon-trash  btn btn-danger btn-xs"
+			<button  class="fa fa-archive btn btn-danger btn-xs"
 			 data-ng-click="remove($index)" style="float: right; "></button>
 			 
 			 <a class="btn btn-success btn-xs"  data-toggle="modal" data-target="#CourseMembers"
@@ -70,8 +70,11 @@
 						<option data-ng-repeat="room in allRooms" value="{{room.id}}">{{room.roomNumber}}</option>
 					</select><br>
 					<br>Start Date:<br><input type="date" class="form-control addstartdate" placeholder="Enter start date.." ><!-- data-ng-model="startDate" -->
-					<br>End Data:<br> <input type="date" class="form-control addenddate" placeholder="Enter end date.." ><br><!-- data-ng-model="enDate" -->
-					<br>Description:<br><input type="text" class="form-control" placeholder="Enter description.." data-ng-model="adddescription"><br>
+					<br>End Date:<br> <input type="date" class="form-control addenddate" placeholder="Enter end date.." ><br><!-- data-ng-model="enDate" -->
+					
+					<br>Description:<br>
+					<textarea type="text" class="form-control" rows="3" placeholder="Enter description.." data-ng-model="adddescription"></textarea><br>
+					
 					<br>Active:<br><input type="checkbox"  data-ng-model="addisActive">
 					<p style="color: red;">* If you do not check the box the course was not active</p>
 				</form>

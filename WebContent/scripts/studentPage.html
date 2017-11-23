@@ -1,11 +1,29 @@
-<div>
+<div data-ng-show="showAssociateCourses" data-ng-hide="hideAssociateCourses">
 		<div data-ng-repeat="course in associated" class="box well col-md-9 courseDetailesBtn"  style="margin-right: 2%;" >
 				<header >
 					<h3>{{course.courseName}}</h3>
 					<h4> By {{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
 				</header>
 		
+			<footer style="background-color: 3a7993;">
 				<a ><button data-ng-click="getCourseDetailes(course.id)" class="btn btn-success btn-md" style="margin-left: 13%; ">
-				<span class="glyphicon glyphicon-plus-sign"></span>Register</button></a>
+				<span class="glyphicon glyphicon-plus-sign"></span>Detailes</button></a>
+			</footer>
+		</div>
+</div>
+
+
+
+<div data-ng-show="showAllCourses" data-ng-hide="hideAllCourses">
+		<div data-ng-repeat="course in allCourses" class="box well col-md-9 courseDetailesBtn"  style="margin-right: 2%;" >
+				<header >
+					<h3>{{course.courseName}}</h3>
+					<h4> By {{course.lecturer.firstName}} {{course.lecturer.lastName}}</h4>
+				</header>
+		
+			<footer style="background-color: 3a7993;">
+				<a ><button data-ng-click="getCourseDetailes(course.id)" class="btn btn-success btn-md" style="margin-left: 13%; ">
+				<span class="glyphicon glyphicon-plus-sign"></span>Detailes</button></a>
+			</footer>
 		</div>
 </div>

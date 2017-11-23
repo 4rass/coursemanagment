@@ -1,40 +1,54 @@
-
-<div class="row">
-<div class="col-md-9">
+<div class="registerBackButtons">
 <button class="btn btn-primary" data-ng-click="returnBackToStudentPage()"> Back</button>
-<h1><b>General</b></h1>
-<div class="well courseDetailes" id="1">
-
-		<div>
-					<h3>{{courseDetailes.courseName}} </h3>
-					<h4>By : {{courseDetailes.lecturer.firstName}}  {{courseDetailes.lecturer.lastName}}</h4>
-		</div>
-				<div><hr></div>
-				
-				<div>{{courseDetailes.description}}</div>
+<button style="float: right; border:1px solid black;" class="btn btn-success" data-ng-click="register()" >Register</button>
 </div>
-<!-- =========================Syllabus================================================= -->
-<h1><b>Syllabus</b></h1>
-<div class="well courseDetailes" id="2">
-		<div data-ng-repeat="day in courseDays">
-					<h1> Day {{$index+1}} </h1>
-					<h4>{{day.agenda}} </h4>
+
+<div class="rows" >
+<div class="col-md-3">
+
+					<ul class="menu" style="float:  left; position: fixed;"  data-ng-show="courseDetailesBtn">
+						<li class="courseDetailesBtn" data-ng-click="genral()">General</li>
+						<li class="courseDetailesBtn" data-ng-click="Syllabus()">Syllabus</li>
+						<li class="courseDetailesBtn" data-ng-click="Schedule()">Schedule  </li>
+						<li class="courseDetailesBtn" data-ng-click="MassageBoard()">Massage Board </li>
+						<li class="courseDetailesBtn" >Presentations </li>
+						<li class="courseDetailesBtn" >Resources</li>
+					</ul>
+</div>
+
+
+<div class="col-md-9 scrollCourseDetailes">
+
+<h1 id="1"> General</h1>
+<div class="panel panel-default">
+		<div  class="panel-body">
+					<h2>{{courseDetailes.courseName}} </h2><span>
+					<small>By : {{courseDetailes.lecturer.firstName}}  {{courseDetailes.lecturer.lastName}}</small></span>
+		</div>
+				<hr>
+			<div class="description"><div>{{courseDetailes.description}}</div></div>
+</div>
+<!-- ========================= Syllabus ================================================= -->
+<h1 id="2">Syllabus</h1>
+<div class="panel panel-default" >
+		<div  class="panel-body" data-ng-repeat="day in courseDays">
+					<h2> Day {{$index+1}} </h2>
+					<p>{{day.agenda}} </p>
 		</div>
 </div>
 <!-- ============================Schedule============================================ -->
-<h1><b>Schedule</b></h1>
-<div class="well courseDetailes" id="3">
-		<div>
+<h1 id="3">Schedule</h1>
+<div class="panel panel-default" >
+		<div class="panel-body">
 			<div data-ng-repeat="day in courseDays">
 					<h3> Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
-		</div>
+			</div>
 		</div>
 </div>
 <!-- ===========================Chat=================================================== -->
-<div >
-	<h1><b>Massage Board</b></h1>
-	<div class="courseDetailes" id="4">
-		<hr>
+<h1  id="4">Massage Board</h1>
+<div  class="panel panel-default" >
+	<div class="panel-body">
 		<form>
 			<div class="form-group clearfix chat"  data-ng-repeat="massage in allMassages">
 				<img src="http://placehold.it/50/55C1E7/fff&text=U"
@@ -48,14 +62,18 @@
 				<div>{{massage.massage}}</div>
 			</div>
 		</form>
-		<textarea class="form-control" data-ng-model="massageText"></textarea>
-		<button class="btn btn-primary" data-ng-click="sendMassage()">
+	</div>
+	 <div class="panel-footer" >
+		<input id="massageId" class="form-control" data-ng-model="massageText" maxlength="250" minlength="1"></input>
+		<small id="counter"></small>
+		<span><button  class="btn btn-primary" data-ng-click="sendMassage()">
 			<i class="glyphicon glyphicon-send"></i><a>&nbsp;</a>Send
 		</button>
+		</span>
 	</div>
 </div>
 <!-- =============================Presentations======================================= -->
-<<!-- div id="presentations" >
+<!-- div id="presentations" >
 	
 	<iframe>
 	
@@ -70,8 +88,28 @@
 	
 	
 	</iframe>
-
 </div> -->
+<!-- ====================================Error/Register Modal ================================ -->
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <!--  <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="yesOrNotModal">Are you sure ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="go()" class="btn btn-primary">Yes</button>
+        <button type="button" ng-click="no()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 </div>

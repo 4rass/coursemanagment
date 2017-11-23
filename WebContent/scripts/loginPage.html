@@ -1,20 +1,21 @@
 <div>
 	<section style="margin-left: 400px;" class="col-xs-4 well   ">
 		<h4>Please sign in :</h4>
-		<form>
+		<form id="login">
 
+			<div id="massage"></div>
 			<div class="input-group">
 				<span class="input-group-addon"><i
-					class="glyphicon glyphicon-user"></i></span> <input ng-model="username"
-					type="text" class="form-control col-xs-2" placeholder="User :"
+					class="glyphicon glyphicon-user"></i>
+				</span> <input id="loginInputs1" ng-model="username" type="text" class="form-control col-xs-2" placeholder="User :"
 					required>
 			</div>
 
 
 			<div class="input-group">
 				<span class="input-group-addon"><i
-					class="glyphicon glyphicon-lock"></i></span> <input ng-model="password"
-					type="password" class="form-control col-xs-2"
+					class="glyphicon glyphicon-lock"></i></span>
+					 <input id="loginInputs2"  ng-model="password" type="password" class="form-control col-xs-2"
 					placeholder="Password :" required>
 			</div>
 

@@ -1,22 +1,21 @@
 body {
-	box-sizing: border-box;
-	min-height: 900px;
+	height: 100%;
 }
 
+.glyphicons{
+	font-size: 25px;
+	 pointer-events: auto;
+	 cursor: pointer;
+	  margin-right: 35px;
+}
 .body1 {
 	display: none;
 }
 
 div.container {
 	width: 100%;
-	border: 1px solid gray;
 	font-family: Gill Sans Extrabold, sans-serif;
 	background-color: #e5e5e5;
-}
-
-header, footer {
-	color: black;
-	text-align: center;
 }
 
 .menu ul{
@@ -24,12 +23,22 @@ header, footer {
     padding: 0;
 }
 
+.error{
+	border: solid 1px #ff1111;
+}
+p{
+	margin: 0 0 10px;
+    font-size: 25px;
+    color: gray;
+}
 .menu li {
     padding: 8px;
     margin-bottom: 7px;
-    background-color: #33b5e5;
+    background-color: #33b5e5;	
     color: #ffffff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+     pointer-events: auto;
+	 cursor: pointer;
 }
 .menu li:hover {
     background-color: #0099cc;
@@ -41,9 +50,23 @@ header, footer {
 	 width: 20%;
 } 
 
-.courseDetailesBtn{
-	margin-bottom: 10px;
+.nav nav-pills{
+	margin-right: 50px;
+	margin-left: 10px''
+}
+
+.panel-default{
 	box-shadow: 10px 10px 5px #888888;
+	 width:inherit;
+	 border: 1px solid;
+	     padding: 15px
+}
+.panel-default > .panel-heading , .panel-default > .panel-footer{
+	background:#1abedb;
+	font-family: 'Mandali' , sans-serif;
+}
+.panel-body{
+	padding: 9px;
 }
 
 .table>tbody>tr>td, 
@@ -54,6 +77,12 @@ header, footer {
 .table>thead>tr>th{
 	border-top: 0px solid ;
 }
+
+.registerBackButtons {
+    width: 65%;
+    margin-left: 21%;
+}
+
 
 .courseDetailes{
 	margin: 50px 50px 50px 50px;
@@ -77,6 +106,10 @@ nav ul a {
 	color: #000000
 }
 
+.scrollCourseDetailes{
+	overflow: scroll;
+	height: -webkit-fill-available;
+}
 nav ul li {
 	padding: 8px 10px;
 }
@@ -97,22 +130,26 @@ section {
 
 article {
 	border-left: 1px solid gray;
-	padding: 20px;
+	padding: 1em;
 	overflow: hidden;
-	float: left;
-	width: calc(100% - 180px);
 	background-color: #ffffff;
 }
 
+.header{
+	position: fixed;
+}
 
 .box {
 	width: 20%;
 	/* height: 300px; */
 	float: left;
 	padding: 10px;.
+	 -webkit-transition: all 150ms ease-in-out;
 	
 }
 .footer{
+	border: 1px solid;
+	height: 100%;
 }
 
 .row {
