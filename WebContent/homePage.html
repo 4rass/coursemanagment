@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1255">
+<title>AT&T</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="myApp.css" rel="stylesheet">
+<script src="myApp.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:700i|Varela+Round" rel="stylesheet">
+
+</head>
+<body class="body" data-ng-app="myApp" data-ng-controller="homePage" >
+<div class="container-fluid" >
+<div class="row content">
+	<header class="body1 header container" >
+				<div><img class="body1 logo" src="../images/logo.png"
+					style="float: left;" ></img>
+				</div>
+
+				
+					<i  class="glyphicon glyphicon-bell glyphicons bell" data-ng-click=""></i>
+					 <i  data-ng-click="HomePage()"
+					  class="glyphicon glyphicon-home glyphicons home" >  </i>&nbsp;
+					  <i  class="fa fa-commenting glyphicons commenting" data-ng-click=""></i>
+					   <i  class="fa fa-cloud-upload glyphicons cloudup"  data-ng-click=""></i>
+					   <i class="fa fa-cloud-download glyphicons clouddown" data-ng-click=""></i>
+					<button type="button" class="btn btn-danger danger" style="float: right;"
+						data-ng-click="logout()">
+						<span class="glyphicon glyphicon-log-out"></span> &nbsp; log out
+					</button>
+				
+	</header>
+			<div class="body1  sideBar col-sm-3">
+				<div class="nav nav-pills nav-stacked">
+					<img  src="../images/avatar_hat.jpg"
+						style="width: 150px" height="100px"></img>
+						<div class="chip">
+						Hello {{usersName.firstName}} {{usersName.lastName}}
+						</div>
+					<hr>
+					<br>
+					<div class="input-group">
+							<input class="form-control" placeholder="Serch in site..." type="text" class="body1" />
+							<div class="input-group-btn">
+									<button class="btn btn-primary">
+									<i class="glyphicon glyphicon-search"></i>
+									</button>
+							</div>
+						</div>
+					<h5 >My Courses</h5>
+
+					<button class="body1 btn btn-primary" data-ng-click="addNewSubject(newSubject)"
+						id="newSubject">+Add New Subject
+					</button>
+					<input  data-ng-model="newSubject" type="text"
+						placeholder="Insert New Subject" id="newSubject1">
+
+					<div class="btn-group-vertical" data-ng-show="allSubjectBtn" data-ng-hide="allSubjectBtnHide">
+						<div class="btn btn primary" data-ng-repeat="x in allsubject" >
+							<button class="list-group-item" data-ng-click="associate(x.id)" value="{{x.id}}" style="cursor: pointer;">{{x.subject}}</button>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+	<div class="col-sm-9" data-ng-view  id="divView" ></div>
+		</div>
+		</div>
+</body>
+</html>

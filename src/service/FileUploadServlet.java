@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import manager.ManagerHelper;
+
 
 	@WebServlet(name = "FileUploadServlet", urlPatterns = {"/upload"})
 	@MultipartConfig
@@ -39,8 +41,12 @@ import javax.servlet.http.Part;
 		if (!temp.exists()) {
 			temp.mkdirs();
 		}
-	    final Part filePart = request.getPart("file");
+	    final Part filePart = 	request.getPart("file");
 	    final String fileName = getFileName(filePart);
+	    
+	    	String value = request.getParameter("file");
+	    	
+	    		System.out.println(value);
 
 	    OutputStream out = null;
 	    InputStream filecontent = null;
