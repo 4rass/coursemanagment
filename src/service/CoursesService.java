@@ -28,7 +28,7 @@ public class CoursesService {
 			return (List)ManagerHelper.getCoursesManager().getAllCourses();
 		}
 	
-		//Lior Asras (7)
+		//orian27.11.2017
 		/**
 		 * This function get parameters from user-interface and return a updated course
 		 *  and return Reply if UPDATE done.
@@ -53,12 +53,13 @@ public class CoursesService {
 				@QueryParam("description")String description,
 				@QueryParam("courseSubject")int  courseSubject1,
 				@QueryParam("room")int room,
-				@QueryParam("isActive")Boolean isActive){
+				@QueryParam("isActive")Boolean isActive,
+				@QueryParam("presentation")String presentation){
 		
-			return ManagerHelper.getCoursesManager().updateCorses(id,courseName, lecturer, startDate, endDate, description,  courseSubject1, room, isActive);
+			return ManagerHelper.getCoursesManager().updateCorses(id,courseName, lecturer, startDate, endDate, description,  courseSubject1, room, isActive,presentation);
 		}
 		
-		//Lior Asras (8)
+		//orian27.11.2017
 		@GET
 		@Path("createNewCourse")
 		public Courses createNewCourse(@QueryParam("courseName")String courseName,
@@ -68,8 +69,9 @@ public class CoursesService {
 				@QueryParam("description")String description,
 				@QueryParam("courseSubject")int  courseSubject1,
 				@QueryParam("room")int room,
-				@QueryParam("isActive")Boolean isActive){
-			return ManagerHelper.getCoursesManager().createNewCourse(courseName, lecturer, startDate, endDate, description, courseSubject1, room, isActive);
+				@QueryParam("isActive")Boolean isActive,
+				@QueryParam("presentation")String presentation){
+			return ManagerHelper.getCoursesManager().createNewCourse(courseName, lecturer, startDate, endDate, description, courseSubject1, room, isActive,presentation);
 		}
 		
 		//Lior Asras(14)

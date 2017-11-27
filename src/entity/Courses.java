@@ -38,6 +38,8 @@ public class Courses {
 	
 	
 	private boolean isActive;
+	//orian27.11.2017
+	private String presentation;
 	
 	public Courses(){
 		
@@ -47,10 +49,10 @@ public class Courses {
 		this.id = id;
 		this.isActive=isActive;
 	}
-	
+	//orian27.11.2017
 	public Courses(String courseName,Lecturers lecturer,String startDate,String endDate,
 			String description, CourseSubject  courseSubject,Rooms room,
-			boolean isActive){
+			boolean isActive,String presentation){
 		this.lecturer=lecturer;
 		this.startDate=startDate;
 		this.endDate=endDate;
@@ -59,11 +61,12 @@ public class Courses {
 		this.courseSubject=courseSubject;
 		this.room=room;
 		this.isActive=isActive;
+		this.presentation=presentation;
 	}
-	
+	//orian27.11.2017
 	public Courses(int id,String courseName,Lecturers lecturer,String startDate,String endDate,
 			String description, CourseSubject  courseSubject,Rooms room,
-			boolean isActive){
+			boolean isActive,String presentation){
 		this.id=id;
 		this.lecturer=lecturer;
 		this.startDate=startDate;
@@ -73,6 +76,7 @@ public class Courses {
 		this.courseSubject=courseSubject;
 		this.room=room;
 		this.isActive=isActive;
+		this.presentation=presentation;
 	}
 	
 
@@ -133,6 +137,14 @@ public class Courses {
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	//orian27.11.2017
+	public String getPresentation() {
+		return presentation;
+	}
+	//orian27.11.2017
+	public void setPresentation(String presentation) {
+		this.presentation = presentation;
 	}
 
 }

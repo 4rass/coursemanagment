@@ -39,12 +39,12 @@ public class CoursesManager {
 	 */
 	public String updateCorses(int id,String courseName,int lecturer,String startDate,String endDate,
 			String description, int  courseSubject1,int room1,
-			boolean isActive) {
+			boolean isActive,String presentation) {
 		Lecturers lecturers = ManagerHelper.getLecturersManager().get(lecturer);
 		CourseSubject courseSubject = ManagerHelper.getCourseSubjectManager().get(courseSubject1);
 		Rooms room = ManagerHelper.getRoomsManager().get(room1);
 		Courses course = new Courses(id,courseName,lecturers,startDate,endDate,description,courseSubject,
-				room,isActive);
+				room,isActive,presentation);
 		try{
 		entityManager.getTransaction().begin();
 		entityManager.merge(course);
@@ -59,7 +59,7 @@ public class CoursesManager {
 		}
 	}
 
-	//Lior Asras (8)
+	//orian27.11.2017
 	/**
 	 * This function get parameters and create a new Course, 
 	 * and returned the Course from data baase with id.
@@ -76,7 +76,7 @@ public class CoursesManager {
 	 */
 	public Courses createNewCourse(String courseName,int lecturer,String startDate,String endDate,
 			String description, int  courseSubject1,int room1,
-			boolean isActive) {
+			boolean isActive,String presentation) {
 		
 		Lecturers lecturers = ManagerHelper.getLecturersManager().get(lecturer);
 		CourseSubject courseSubject = ManagerHelper.getCourseSubjectManager().get(courseSubject1);
@@ -84,7 +84,7 @@ public class CoursesManager {
 		
 		
 		Courses course = new Courses(courseName,lecturers,startDate,endDate,description,courseSubject,
-				room,isActive);
+				room,isActive, presentation);
 		
 		try{
 		entityManager.getTransaction().begin();
@@ -162,6 +162,18 @@ public class CoursesManager {
 		String sql = "select * from courses where id ="+id;
 		return (Courses) entityManager.createNativeQuery(sql, Courses.class).getSingleResult();
 		
+	}
+	public String uploadPresentation(String id,String presentation){
+		Courses course = get(Integer.parseInt(id));
+		course.setPresentation(presentation);
+		try{
+		entityManager.getTransaction().begin();
+		entityManager.merge(course);
+		entityManager.getTransaction().commit();
+		return Reply.OK_STR;
+		} catch (Exception e) {
+			return Reply.FAIL_STR;
+		}
 	}
 	
 }
