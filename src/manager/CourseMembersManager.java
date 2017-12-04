@@ -127,4 +127,12 @@ public class CourseMembersManager {
 		String sql = "SELECT * FROM coursemanagment.coursemembers where course ="+id;
 		return (List)entityManager.createNativeQuery(sql, CourseMembers.class).getResultList();
 	}
+	
+	public List<CourseMembers> getAssociateCoursesToStudentByUserId(int userId){
+		String sql = "SELECT * FROM coursemanagment.coursemembers cm "+
+						"inner join coursemanagment.students s on s.id = cm.student "+
+						"inner join coursemanagment.users u on u.id = s.user " +
+						"where u.id ="+userId;
+		return (List<CourseMembers>)entityManager.createNativeQuery(sql, CourseMembers.class).getResultList();
+	}
 }

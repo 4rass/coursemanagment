@@ -36,7 +36,7 @@ import manager.ManagerHelper;
 	    response.setContentType("text/html;charset=UTF-8");
 
 	    String folder= request.getParameter("folder");
-	    final String path = "C:/Users/user/git/coursemanagment/WebContent/"+folder;
+	    final String path = "C:/Users/user/web-work/coursemanagment/WebContent/"+folder;
 	    File temp = new File(path);
 		if (!temp.exists()) {
 			temp.mkdirs();
@@ -44,14 +44,10 @@ import manager.ManagerHelper;
 	    final Part filePart = 	request.getPart("file");
 	    final String fileName = getFileName(filePart);
 	    
-	    	String value = request.getParameter("file");
-	    	
-	    		System.out.println(value);
-
+	    
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 	    final PrintWriter writer = response.getWriter();
-	    File a = new File(path + File.separator+ fileName);
 	    try {
 	        out = new FileOutputStream(new File(path + File.separator
 	                + fileName));
@@ -63,6 +59,20 @@ import manager.ManagerHelper;
 	        while ((read = filecontent.read(bytes)) != -1) {
 	            out.write(bytes, 0, read);
 	        }
+	        String[] parts = fileName.split("\\.");
+		    String presentation = parts[0];
+		    String fileType = parts[1];
+		    if(fileType.equals("pptx")){
+		    	ManagerHelper.getCoursesManager().uploadPresentation(folder, presentation);
+		    	System.out.println(path+"/"+fileName);
+		    	System.out.println(path+"/"+presentation+".pdf");
+		    	ConvertPptToPdf cPtP = new ConvertPptToPdf();
+		    	/*try {
+					cPtP.convertPPTToPDF(path+"/"+fileName, path+"/"+presentation+".pdf", ".pptx");
+				} catch (Exception e) {
+					System.out.println("error");
+				}*/
+		    }
 	        writer.println("New file " + fileName + " created at " + path);
 	        LOGGER.log(Level.INFO, "File{0}being uploaded to {1}", 
 	                new Object[]{fileName, path});

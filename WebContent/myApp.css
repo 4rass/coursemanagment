@@ -13,13 +13,37 @@ body {
 	float: right;
 }
 
+h1 {
+    font-size: 36px;
+    color: white;
+}
+
+.col-md-9 {
+    width: 100%;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.col-md-11 {
+    width: 91.66666667%;
+    margin-left: 25%;
+}
+
 .sideBar{
 	background-color: #f1f1f1;
     height: 100%;
     box-shadow: 5px 10px 5px #888888;
-    width: min-content;
+    width: 250px;
     margin-right: 15px;	
-    margin-top: 5px;
+    margin-top: 4.4%;
     margin-left: 5px;
     border-radius: 5px;
 }
@@ -34,7 +58,6 @@ body {
 	font-size: 28px;
 	transition: 1s ease-out;
 }
-
 .body1 {
 	display: none;
 }
@@ -46,12 +69,16 @@ div.container {
 
 #divView{
 	padding: 5px;
+	margin-top: 4%
 }
 
 .error{
 	border: solid 1px #ff1111;
-
 }
+
+ .modal.in .modal-dialog{
+	width: 35%
+} 
 p{
 	margin: 0 0 10px;
     font-size: 25px;
@@ -85,11 +112,14 @@ p{
 	border-top: 0px solid ;
 }
 
-.registerBackButtons {
-    width: 65%;
+.register {
     margin-left: 21%;
+    margin-top: 4%;
 }
 
+.register{
+	margin-top: 4%;
+}
 
 .courseDetailes{
 	margin: 50px 50px 50px 50px;
@@ -97,6 +127,8 @@ p{
 
 .courseDetailesBtn{
 	position: fixed;
+	margin-left: 6%;
+	margin-top: 5%;
 }  
 
 .chat{
@@ -109,16 +141,14 @@ p{
 	 height: 25%;
 }
 
-/* .scrollCourseDetailes{
-	height: -webkit-fill-available;
-	overflow: scroll;
-} */
-
 .header{
 	background-color: white;
 	width: 100%;
 	border-radius: 5px;
     padding: 2px;
+    position: fixed;
+    width: 99.5%;
+    z-index: 1;
 }
 .logo{
 	height:30px; 
@@ -135,7 +165,6 @@ p{
 	padding: 11px;.
 	 -webkit-transition: all 150ms ease-in-out;
 	 box-shadow: 10px 5px 10px #8888;
-	
 }
 
 .footer{

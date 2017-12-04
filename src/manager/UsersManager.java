@@ -103,13 +103,10 @@ public class UsersManager {
 	public Users getByName(String name,String password) {
 		try{	
 		String sql = "select * from users where userName like '"+name+"' and password like  '"+password+"' ";
-		System.out.println(sql);
 		
 			return (Users) entityManager.createNativeQuery(sql, Users.class).getSingleResult();
 		}catch(Exception e){
 		
-			e.printStackTrace();
-			
 			return null;
 		}
 		

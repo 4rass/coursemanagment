@@ -20,7 +20,11 @@ public class CourseMembersService {
 	
 
 
-	
+	@GET
+	@Path("AssociateCoursesToStudentByUserId")
+	public List<CourseMembers> getAssociateCoursesToStudentByUserId(@QueryParam ("userId")int userId){
+		return ManagerHelper.getCourseMembersManager().getAssociateCoursesToStudentByUserId(userId);
+	}
 	@GET
 	@Path("getCourseMembersByCourseId")
 	public List<CourseMembers> getCourseMembersByCourseId(@QueryParam("id")int id){

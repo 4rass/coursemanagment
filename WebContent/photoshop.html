@@ -1,10 +1,8 @@
 
 <div class="row" >
-<div class="registerBackButtons">
-<button class="btn btn-primary" data-ng-click="returnBackToStudentPage()"> Back</button>
-<button style="float: right; border:1px solid black;" class="btn btn-success" data-ng-click="register()" >Register</button>
+<button class="btn btn-primary register" data-ng-click="returnBackToUserPage()"> Back</button>
+<button style="float: right; border:1px solid black;" class="btn btn-success register errormodal" data-ng-click="register()" >Register</button>
 
-</div>
 <div class="col-md-1">
 
 					<div class="card" style="float:  left; position: fixed;"  data-ng-show="courseDetailesBtn">
@@ -26,7 +24,7 @@
 </div>
 
 
-<div class="col-md-11 scrollCourseDetailes">
+<div class="col-md-11 scrollCourseDetailes" >
 
 <h1 id="General"> General</h1>
 <div class="panel panel-default">
@@ -47,10 +45,22 @@
 </div>
 <!-- ============================Schedule============================================ -->
 <h1 id="Schedule">Schedule</h1>
-<div class="panel panel-default" >
+<!-- <button type="button" class="btn btn-info btn-lg daysupdateclass" data-toggle="modal" data-target="#newDayAndSchechul">Create New Schedule</button> -->
+<div class="panel panel-default second" >
+		<div class="panel-body">
+			<div data-ng-repeat="day in courseDays" >
+					<h3> Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
+					<div>
+							<button class=" glyphicon glyphicon-pencil btn btn-info btn-xs "  data-ng-click="register($index)"></button>
+							<button class=" glyphicon glyphicon-trash btn btn-danger btn-xs " data-ng-click="deleteDays($index)"></button>
+					</div>
+			</div>
+		</div>
+</div>
+<div class="panel panel-default first" >
 		<div class="panel-body">
 			<div data-ng-repeat="day in courseDays">
-					<h3> Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
+					<h3 > Day {{$index+1}} :  {{day.day| date:"longDate"}}, {{day.startTime}} - {{day.endTime}}</h3>
 			</div>
 		</div>
 </div>
@@ -86,9 +96,12 @@
 <div id="presentations" >
 	<div class="panel panel-default" >
 		<div class="panel-body">
-			<p>
-				This paragraph is for presentations
-			</p>
+				<div>
+						 <a href="{{pptx}}" download>download</a>
+						<iframe src="{{pdf}}" width="400" height="400">
+							<p>Your browser does not support iframes.</p>
+						</iframe>
+				</div>
 		</div>
 	</div>
 </div> 
@@ -99,36 +112,94 @@
 		<div class="panel panel-default" >
 				<div class="panel-body">
 					<p>
-						<body>
-		<iframe src="http://docs.google.com/gview?url=http://localhost/coursemanagment/files/Course Management System.pptx&amp;embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+					
+					<div>
+					<body>
+						<a href="files\android.pdf" download>download</a>
+						<iframe src="files\android.pdf" width="400" height="400">
+							<p>Your browser does not support iframes.</p>
+						</iframe>
 						</body>
+					</div>
+					
 					</p>
 				</div>
 		</div>
 </div> 
-<!-- ====================================Error/Register Modal ================================ -->
 
-<div class="modal" tabindex="-1" role="dialog">
+<button  class="goToTop btn btn-info"  data-ng-click="ScrollToTop()">  Scroll to top</button>
+
+<div class="modal" id="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <h5 class="modal-title">Modal title</h5> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <!--  <span aria-hidden="true">&times;</span> -->
         </button>
       </div>
       <div class="modal-body">
+      <div class="daysupdateclass">
+      <form style="font-size: 15px">
+      <h2>update day</h2><br><br>
+      Date:<br><input type="date" class="updatethedate">
+      <br><br>
+      Agenda:<br><textarea data-ng-model="updateagenda"></textarea>
+      <br><br>
+      Start Time:<br><input type="time" class="updatestartTime">
+      <br><br>
+      EndTime:<br><input type="time" class="updateendTime">
+      <br>
+      </form>
+      </div>
+      <div class="errormodal">
         <p id="yesOrNotModal">Are you sure ?</p>
       </div>
+      </div>
       <div class="modal-footer">
-        <button type="button" ng-click="go()" class="btn btn-primary">Yes</button>
-        <button type="button" ng-click="no()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      	<button type="button" data-ng-click="updateDays($index)" class="btn btn-primary daysupdateclass">update</button>
+        <button type="button" data-ng-click="go()" class="btn btn-primary errormodal">Yes</button>
+        <button type="button" data-ng-click="no()" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<button  class="goToTop btn btn-info"  data-ng-click="ScrollToTop()">  Scroll to top</button>
+
+
+
+ <!-- <div id="newDayAndSchechul" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create new day& Schedule</h4>
+      </div>
+      <div class="modal-body">
+       <form style="font-size: 15px">
+	      Date:<br><input type="date" class="adddate">
+	      <br><br>
+	      Agenda:<br><textarea data-ng-model="addagenda"></textarea>
+	      <br><br>
+	      Start Time:<br><input type="time" class="addstartTime">
+	      <br><br>
+	      EndTime:<br><input type="time" class="addendTime">
+	      <br><br>
+	      Course:<br>
+	      <select data-ng-model="addcourse">
+	      <option data-ng-repeat="course in allCourses" value="{{course.id}}">{{course.courseName}}</option>
+	      </select>
+      <br>
+      </form>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-success" data-ng-click="createday()">create</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ -->
+
 
 </div>
 </div>
