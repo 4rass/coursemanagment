@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="windows-1255">
-<title>AT&T</title>
+<title>AT&T Course Management System</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -13,6 +13,10 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -23,27 +27,43 @@
 <script src="myApp.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:700i|Varela+Round" rel="stylesheet">
 
+
 </head>
 <body class="body" data-ng-app="myApp" data-ng-controller="homePage" >
 <div class="container-fluid" >
 <div class="row content">
 	<header class="body1 header container" >
-				<div><img class="body1 logo" src="../images/logo.png"
+				<div><img class="body1 logo" src="images/logo.png" data-ng-click="HomePage()"
 					style="float: left;" ></img>
 				</div>
-
+					
+				<div class="dropdown">
+				    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Settings
+					    <span class="caret"></span></button>
+					    <ul class="dropdown-menu">
+					      <li class="dropdown-header">Change Skin</li>
+					      <li data-ng-click="changeStyleDarker()"><a >Darker</a></li>
+					      <li data-ng-click="changeStyleNormal()"><a >Normal</a></li>
+					      <li class="divider"></li>
+					      <li class="dropdown-header">Us</li>
+					      <li data-ng-click="aboutUs()"><a>About Us</a></li>
+					    </ul>
+					    	
 				
-					<i  class="glyphicon glyphicon-bell glyphicons bell" data-ng-click=""></i>
+					    			
 					 <i  data-ng-click="HomePage()"
 					  class="glyphicon glyphicon-home glyphicons home" >  </i>&nbsp;
-					  <i  class="fa fa-commenting glyphicons commenting" data-ng-click=""></i>
-					   <i  class="fa fa-cloud-upload glyphicons cloudup"  data-ng-click=""></i>
-					   <i class="fa fa-cloud-download glyphicons clouddown" data-ng-click=""></i>
-					<button type="button" class="btn btn-danger danger" style="float: right;"
-						data-ng-click="logout()">
-						<span class="glyphicon glyphicon-log-out"></span> &nbsp; log out
-					</button>
-				
+					   <i  class="fa fa-cloud-upload glyphicons"
+					   data-toggle="modal" data-target="#resources"  data-ng-click="resources()"></i>
+				  </div>
+				 	 <span>		
+					    	<button type="button" class="btn btn-danger danger" style="float: right;"
+								data-ng-click="logout()">
+								<span class="glyphicon glyphicon-log-out"></span> &nbsp; log out
+							</button>
+					</span>
+					
+					
 	</header>
 			<div class="body1  sideBar col-sm-3">
 				<div class="nav nav-pills nav-stacked">
@@ -54,15 +74,10 @@
 						</div>
 					<hr>
 					<br>
-					<div class="input-group">
-							<input class="form-control" placeholder="Serch in site..." type="text" class="body1" />
-							<div class="input-group-btn">
-									<button class="btn btn-primary">
-									<i class="glyphicon glyphicon-search"></i>
-									</button>
+							<div class="input-group">
+							<input class="form-control" minlength=2 placeholder="Serch in site..." type="text" class="body1" data-ng-model="search.courseName" />
+						
 							</div>
-						</div>
-					<h5 >My Courses</h5>
 
 					<button class="body1 btn btn-primary" data-ng-click="addNewSubject(newSubject)"
 						id="newSubject">+Add New Subject

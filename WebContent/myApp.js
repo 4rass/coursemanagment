@@ -15,11 +15,14 @@
 				controller : "studentCtrl"
 			}).when("/managerPage", {
 				templateUrl : "managerPage.html",
-				controller : "managerCtrl"		
-			
+				controller : "managerCtrl"	
+			}).when("/aboutUsPage", {
+				templateUrl : "aboutUsPage.html",
+				controller : "aboutUsPageCtrl"	
+			}).when("/test", {
+				templateUrl : "test.html",
+				controller : "testCtrl"		
 			});
-			
-		
 		});
 		
 		
@@ -138,8 +141,13 @@ app.factory('myService',function($http){
 		});
 		
 
-		
 		userId;
+		
+		app.controller('aboutUsPageCtrl',function($location){
+			
+		});
+		
+		
 		app.controller('homePage', function($scope, $http,$location,$rootScope,myService) {
 			$(".cloudup").hide();
 			
@@ -147,6 +155,20 @@ app.factory('myService',function($http){
 					$(".cloudup").show();
 				}
 			 
+				$scope.changeStyleDarker = function(){
+					 $(".body").attr('style','background: null');
+					 $(".body").attr('style','background-color: #3a4250');
+				}
+				$scope.changeStyleNormal = function(){
+					
+					 $(".body").attr('style','background-color: url("/coursemanagment/images/bgSite.jpg")no-repeat fixed center');
+				}
+				
+				
+			$scope.aboutUs = function(){
+				$location.path('/aboutUsPage');
+			}	
+				
 			$scope.HomePage = function(){
 				
 				$(".sideBar").show();
@@ -687,7 +709,76 @@ app.factory('myService',function($http){
 				$location.path("/coursesId");
 				$(".modal").hide();
 			}
+			
+			$scope.test = function(){
+				$location.path("/test");
+			}
+			
 		})
+		
+		
+		app.controller('testCtrl',function(myService,$scope, $http,$location,$rootScope){
+			
+			
+			var test1, test2, test3, test4, test5, correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5;
+			
+			$(document).ready(function(){
+			        $('input[type="checkbox"]').on('change', function() {
+						   $(this).siblings('input[type="checkbox"]').prop('checked', false);
+					});
+			});
+			
+			$http.get("http://localhost/coursemanagment/rest/testService/getAnswers?courseId="+courseId).then(function(response){
+				$scope.result = response.data;
+				
+				  test1 = $scope.result[0];	
+				  $scope.test1 = test1;
+				  test2 = $scope.result[1];
+				  $scope.test2 = test2;
+				  test3 = $scope.result[2];
+				  $scope.test3 = test3;
+				  test4 = $scope.result[3];
+				  $scope.test4 = test4;
+				  test5 = $scope.result[4];
+				  $scope.test5 = test5;
+		
+				  correctAnswer1 = test1.correctAnswer;
+				  correctAnswer2 = test2.correctAnswer ;
+				  correctAnswer3 = test3.correctAnswer;
+				  correctAnswer4 = test4.correctAnswer ;
+				  correctAnswer5 = test5.correctAnswer;
+			});
+			
+			
+			$scope.sendTest = function(){
+				
+				if(confirm("Are you sure you want finish your teset?\n" +
+						" you got time...."))
+					{
+						
+					var selected_answers = [];
+					
+					$("input:checkbox[name=answers]:checked").each(function(){
+						selected_answers.push($(this).val());
+					});
+						
+						var correctAnswers = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4,correctAnswer5];
+						var sumOfCorrectAnswers = 0;
+						
+						for(var i =0; i < selected_answers.length; i++){
+							if(correctAnswers.findIndex(co => co == selected_answers[i]) >-1){
+								sumOfCorrectAnswers  += 100;
+							}
+						}
+						var testResult =  sumOfCorrectAnswers  / correctAnswers.length;
+						alert("your test result is : "+testResult);
+					}
+				
+			}
+			
+			
+		});
+		
 		
 		
 		app.controller('studentCtrl', function(myService,$scope, $http,$location,$rootScope) {

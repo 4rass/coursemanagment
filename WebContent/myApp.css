@@ -5,7 +5,8 @@
 body {
 	height: 100%;
 	box-sizing: inherit;
-	background-color: #3a4250;
+	/* background-color: #3a4250;  */
+	 background: url("/coursemanagment/images/bgSite.jpg")no-repeat fixed center;
 }
 .addNewCourse{
 	margin-right: 0px;
@@ -47,17 +48,19 @@ h1 {
     margin-left: 5px;
     border-radius: 5px;
 }
+
 .glyphicons{
-	font-size: 25px;
+	 font-size: 25px;
 	 pointer-events: auto;
 	 cursor: pointer;
-	  margin-right: 35px;
+	 margin-right: 35px;
 }
 
 .bell:HOVER , .home:HOVER , .commenting:HOVER , .cloudup:HOVER , .clouddown:HOVER {
 	font-size: 28px;
 	transition: 1s ease-out;
 }
+
 .body1 {
 	display: none;
 }
@@ -79,26 +82,46 @@ div.container {
  .modal.in .modal-dialog{
 	width: 35%
 } 
+
 p{
 	margin: 0 0 10px;
     font-size: 25px;
     color: gray;
+}
+
+#aboutUs {
+    margin: 0 0 10px;
+    color: #f2dede;
+    width: 700px;
+    font-family: "Noto Sans",Helvetica,Arial,"Microsoft YaHei New","Microsoft Yahei","微软雅黑",宋体,SimSun,STXihei,"华文细黑",sans-serif;
+       font-family: unset;
+    font-size: 20px;
 }
  .nav {
 	float: left;
 	margin-right: 10px;
 } 
 
+#team{
+	color: bisque;
+}
+
+#dicCenter{
+	 margin-right: auto;
+ 	 margin-left: auto;
+}
+
 .panel-default{
-	box-shadow: 10px 10px 5px #888888;
+	 box-shadow: 10px 10px 5px #888888;
 	 width:75%;
 	 border: 1px solid;
-	     padding: 15px
+	 padding: 15px
 }
+
 .panel-default > .panel-heading , .panel-default > .panel-footer{
 	background:#1abedb;
-	/* font-family: 'Mandali' , sans-serif; */
 }
+
 .panel-body{
 	padding: 9px;
 }
@@ -141,23 +164,30 @@ p{
 	 height: 25%;
 }
 
+.dropdown, .dropup {
+    position: relative;
+    width: 22%;
+}
+
 .header{
 	background-color: white;
-	width: 100%;
-	border-radius: 5px;
+    width: 100%;
+    border-radius: 5px;
     padding: 2px;
     position: fixed;
     width: 99.5%;
     z-index: 1;
+    height: 36px;
 }
 .logo{
 	height:30px; 
+	cursor: pointer;
 }
 .container-fluid{
 	font-family: 'Varela Round',sans-serif;
 	text-align: -webkit-center;
 	margin: 5px;
-	background-color: #3a4250;
+	/* background-color: #3a4250; */
 }
 .box {
 	width: 30%;
@@ -190,4 +220,8 @@ p{
 
 .right-addon input {
 	padding-left: 0px;
+}
+
+h4{
+	margin-top: 8%;
 }
